@@ -51,8 +51,12 @@ vim.opt.matchtime = 0
 -- Color the column
 vim.opt.colorcolumn = tostring(text_width)
 
--- Highlights
-vim.api.nvim_command('highlight MatchParen ctermbg=None ctermfg=Red cterm=bold')
+-- Colorschema
+vim.api.nvim_command('syntax on')
+vim.api.nvim_command('colorscheme desert')
+
+-- Termguicolors
+vim.opt.termguicolors = true
 
 --------------------------------------------------------------------------------
 --                        Text, Tab, Indent, Backspace                        --
