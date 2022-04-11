@@ -17,13 +17,13 @@ require('lualine').setup {
 
 -- telescope.nvim
 local telescope = require('telescope')
-local actions = require("telescope.actions")
+local actions = require('telescope.actions')
 telescope.setup {
     defaults = {
         mappings = {
             i = {
-                ["<c-j>"] = actions.move_selection_next,
-                ["<c-k>"] = actions.move_selection_previous,
+                ['<c-j>'] = actions.move_selection_next,
+                ['<c-k>'] = actions.move_selection_previous,
             }
         }
     },
@@ -32,14 +32,14 @@ telescope.setup {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
-            case_mode = "smart_case",
+            case_mode = 'smart_case',
         }
     }
 }
 telescope.load_extension('fzf')
 
 -- project.nvim
-require("project_nvim").setup {}
+require('project_nvim').setup {}
 
 -- nvim-bufferline
 local get_hex = require('cokeline/utils').get_hex
@@ -71,52 +71,56 @@ require('hop').setup {}
 require('nvim-autopairs').setup {}
 
 -- kommentary
-require("kommentary")
+require('kommentary')
 vim.g.kommentary_create_default_mappings = false
 
 -- nvim-cmp
 vim.opt.completeopt='menu,menuone,noselect'
 local cmp = require('cmp')
-cmp.setup({
+local select_next_item = function(fallback)
+    if cmp.visible() then
+        cmp.select_next_item()
+    else
+        fallback()
+    end
+end
+local select_prev_item = function(fallback)
+    if cmp.visible() then
+        cmp.select_prev_item()
+    else
+        fallback()
+    end
+end
+
+cmp.setup {
     snippet = {
         expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
+            require('luasnip').lsp_expand(args.body)
         end,
     },
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-e>'] = cmp.mapping({
+        ['<c-p>'] = cmp.mapping.select_prev_item(),
+        ['<c-n>'] = cmp.mapping.select_next_item(),
+        ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<c-e>'] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end,
-        ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            else
-                fallback()
-            end
-        end,
+        ['<cr>'] = cmp.mapping.confirm({ select = true }),
+        ['<tab>'] = select_next_item,
+        ['<s-tab>'] = select_prev_item,
+        ['<c-l>'] = select_next_item,
+        ['<c-h>'] = select_prev_item,
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
+        { name = 'luasnip' },
     }, {
         { name = 'buffer' },
         { name = 'path' },
     })
-})
+}
 
 -- cmp-cmdline
 cmp.setup.cmdline('/', {
@@ -131,4 +135,7 @@ cmp.setup.cmdline(':', {
         { name = 'cmdline' }
     })
 })
+
+-- nvim-lspconfig
+require('plugins.lspconfig_settings')
 
