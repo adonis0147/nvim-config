@@ -19,11 +19,11 @@ require('packer').startup(function()
     use 'azabiong/vim-highlighter'
     use 'axelf4/vim-strip-trailing-whitespace'
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
 end)
-
-require('plugins.settings')
-require('plugins.key_bindings')
-
--- Highlights
-vim.api.nvim_command('highlight MatchParen ctermbg=None ctermfg=Red cterm=bold')
 
