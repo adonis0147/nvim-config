@@ -54,3 +54,6 @@ lspconfig['clangd'].setup {
     }
 }
 
+-- Autocmds
+vim.api.nvim_command('autocmd BufWrite * lua vim.lsp.buf.formatting_sync()')
+

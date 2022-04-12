@@ -43,7 +43,7 @@ require('project_nvim').setup {}
 
 -- nvim-bufferline
 local get_hex = require('cokeline/utils').get_hex
-require('cokeline').setup({
+require('cokeline').setup {
     show_if_buffers_are_at_least = 2,
     default_hl = {
         fg = function(buffer)
@@ -62,7 +62,7 @@ require('cokeline').setup({
             delete_buffer_on_left_click = true,
         },
     },
-})
+}
 
 -- hop.nvim
 require('hop').setup {}
