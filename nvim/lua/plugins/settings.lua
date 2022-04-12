@@ -153,3 +153,6 @@ require('nvim-treesitter.configs').setup {
 -- vim-gutentags
 vim.g.gutentags_cache_dir = '~/.cache/ctags'
 
+-- focus.nvim
+require("focus").setup { enable = not vim.opt.diff:get() }
+

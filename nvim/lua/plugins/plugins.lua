@@ -22,6 +22,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp'
     use 'neovim/nvim-lspconfig'
     use 'nvim-treesitter/nvim-treesitter'
+    use 'beauwilliams/focus.nvim'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'junegunn/vim-easy-align'
