@@ -150,3 +150,6 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
+-- vim-gutentags
+vim.g.gutentags_cache_dir = '~/.cache/ctags'
+

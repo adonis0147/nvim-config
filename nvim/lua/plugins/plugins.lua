@@ -13,12 +13,6 @@ require('packer').startup(function()
     use 'phaazon/hop.nvim'
     use 'windwp/nvim-autopairs'
     use 'b3nj5m1n/kommentary'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-repeat'
-    use 'junegunn/vim-easy-align'
-    use 'azabiong/vim-highlighter'
-    use 'axelf4/vim-strip-trailing-whitespace'
-    use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-cmdline'
@@ -28,5 +22,12 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp'
     use 'neovim/nvim-lspconfig'
     use 'nvim-treesitter/nvim-treesitter'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
+    use 'junegunn/vim-easy-align'
+    use 'azabiong/vim-highlighter'
+    use 'axelf4/vim-strip-trailing-whitespace'
+    use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
+    use 'ludovicchabant/vim-gutentags'
 end)
 
