@@ -6,13 +6,13 @@
 require('monokai').setup { palette = require('monokai').pro }
 
 -- lualine.nvim
-require('lualine').setup { 
-    options = { 
-        icons_enabled = false, 
-        theme = 'powerline', 
+require('lualine').setup {
+    options = {
+        icons_enabled = false,
+        theme = 'powerline',
         component_separators = {},
-        section_separators = {}, 
-    } 
+        section_separators = {},
+    }
 }
 
 -- telescope.nvim
@@ -75,7 +75,7 @@ require('kommentary')
 vim.g.kommentary_create_default_mappings = false
 
 -- nvim-cmp
-vim.opt.completeopt='menu,menuone,noselect'
+vim.opt.completeopt = 'menu,menuone,noselect'
 local cmp = require('cmp')
 local select_next_item = function(fallback)
     if cmp.visible() then
@@ -155,4 +155,3 @@ vim.g.gutentags_cache_dir = '~/.cache/ctags'
 
 -- focus.nvim
 require('focus').setup { enable = not vim.opt.diff:get() }
-

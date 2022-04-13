@@ -70,9 +70,8 @@ local setup_luasnip_keymaps = function()
     vim.api.nvim_set_keymap('s', '<s-tab>', 'v:lua.luasnip_jump_prev("<s-tab>")', { expr = true })
     vim.api.nvim_set_keymap('i', '<c-l>', 'v:lua.luasnip_expand_or_jump("<c-l>")', { expr = true })
     vim.api.nvim_set_keymap('s', '<c-l>', 'v:lua.luasnip_expand_or_jump("<c-l>")', { expr = true })
-    vim.api.nvim_set_keymap('i', '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true})
-    vim.api.nvim_set_keymap('s', '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true})
+    vim.api.nvim_set_keymap('i', '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true })
+    vim.api.nvim_set_keymap('s', '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true })
 end
 
 setup_luasnip_keymaps()
-

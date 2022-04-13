@@ -24,7 +24,7 @@ vim.opt.mouse = 'a'
 vim.opt.fileencodings = 'utf-8,cp936'
 
 -- File formats
-vim.opt.fileformats='unix,dos'
+vim.opt.fileformats = 'unix,dos'
 
 -- Timeout
 vim.opt.timeoutlen = 500
@@ -92,4 +92,3 @@ vim.opt.ignorecase = true
 
 -- When searching try to be smart about cases.
 vim.opt.smartcase = true
-

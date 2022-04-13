@@ -21,7 +21,7 @@ vim.api.nvim_set_keymap('', '<c-j>', '<c-w>j', { noremap = true })
 vim.api.nvim_set_keymap('', '<c-k>', '<c-w>k', { noremap = true })
 vim.api.nvim_set_keymap('', '<c-l>', '<c-w>l', { noremap = true })
 
--- Easier moving between tabs 
+-- Easier moving between tabs
 vim.api.nvim_set_keymap('n', '<leader>n', '<cmd>bprevious<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>m', '<cmd>bnext<cr>', { noremap = true })
 
@@ -30,7 +30,7 @@ vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 
 --------------------------------------------------------------------------------
---                                  Autocmd                                   --
+--                                  Autocmds                                  --
 --------------------------------------------------------------------------------
 
 -- Make
@@ -50,4 +50,3 @@ vim.api.nvim_command('autocmd FileType ruby nmap <F9> :w<cr>:terminal ruby %<cr>
 vim.api.nvim_command('autocmd FileType ruby imap <F9> <esc>:w<cr>:terminal ruby %<cr>')
 vim.api.nvim_command('autocmd FileType sh nmap <F9> :w<cr>:terminal bash %<cr>')
 vim.api.nvim_command('autocmd FileType sh imap <F9> <esc>:w<cr>:terminal bash %<cr>')
-

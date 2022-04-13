@@ -32,4 +32,3 @@ require('packer').startup(function()
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
     use 'ludovicchabant/vim-gutentags'
 end)
-

@@ -12,4 +12,3 @@ end
 
 -- Highlights
 vim.api.nvim_command('highlight MatchParen ctermbg=None ctermfg=Red cterm=bold')
-
