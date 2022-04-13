@@ -136,8 +136,8 @@ cmp.setup.cmdline(':', {
     })
 })
 
--- nvim-lspconfig
-require('plugins.lspconfig_settings')
+-- LSP settings
+require('plugins.lsp_settings')
 
 -- nvim-treesitter
 require('nvim-treesitter.configs').setup {
@@ -154,5 +154,5 @@ require('nvim-treesitter.configs').setup {
 vim.g.gutentags_cache_dir = '~/.cache/ctags'
 
 -- focus.nvim
-require("focus").setup { enable = not vim.opt.diff:get() }
+require('focus').setup { enable = not vim.opt.diff:get() }
 

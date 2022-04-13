@@ -21,6 +21,7 @@ require('packer').startup(function()
     use 'saadparwaiz1/cmp_luasnip'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'neovim/nvim-lspconfig'
+    use 'williamboman/nvim-lsp-installer'
     use 'nvim-treesitter/nvim-treesitter'
     use 'beauwilliams/focus.nvim'
     use 'tpope/vim-surround'

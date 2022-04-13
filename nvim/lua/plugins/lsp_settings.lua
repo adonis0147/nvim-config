@@ -33,26 +33,32 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local lspconfig = require('lspconfig')
-local servers = {}
-for _, lsp in pairs(servers) do
-    lspconfig[lsp].setup {
+-- nvim-lsp-installer
+local lsp_installer = require('nvim-lsp-installer')
+local enhance_server_opts = {
+    ['clangd'] = function(opts)
+        opts.cmd = {
+            'clangd',
+            '--completion-style=detailed',
+            '--query-driver=/usr/bin/*',
+        }
+    end,
+}
+
+lsp_installer.on_server_ready(function(server)
+    -- Specify the default options which we'll use to setup all servers
+    local opts = {
         on_attach = on_attach,
         capabilities = capabilities,
     }
-end
 
-lspconfig['clangd'].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-        'clangd',
-        '--completion-style=detailed',
-        '--query-driver=/usr/bin/*',
-    }
-}
+    if enhance_server_opts[server.name] then
+        -- Enhance the default opts with the server-specific ones
+        enhance_server_opts[server.name](opts)
+    end
+
+    server:setup(opts)
+end)
 
 -- Autocmds
 vim.api.nvim_command('autocmd BufWrite * lua vim.lsp.buf.formatting_sync()')
