@@ -7,20 +7,29 @@ require('packer').startup(function()
     use 'tanvirtin/monokai.nvim'
     use 'nvim-lualine/lualine.nvim'
     use 'noib3/nvim-bufferline'
-    use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use 'ahmedkhalf/project.nvim'
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            'nvim-telescope/telescope-live-grep-raw.nvim',
+            'ahmedkhalf/project.nvim',
+        }
+    }
     use 'phaazon/hop.nvim'
     use 'windwp/nvim-autopairs'
     use 'b3nj5m1n/kommentary'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/cmp-path'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'L3MON4D3/LuaSnip'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lsp',
+        }
+    }
+    use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
     use 'rafamadriz/friendly-snippets'
-    use 'hrsh7th/cmp-nvim-lsp'
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
     use 'nvim-treesitter/nvim-treesitter'

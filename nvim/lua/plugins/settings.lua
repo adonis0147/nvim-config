@@ -37,6 +37,7 @@ telescope.setup {
     }
 }
 telescope.load_extension('fzf')
+vim.api.nvim_command('autocmd User TelescopePreviewerLoaded setlocal wrap')
 
 -- project.nvim
 require('project_nvim').setup {}
