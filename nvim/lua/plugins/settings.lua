@@ -157,5 +157,17 @@ require('luasnip.loaders.from_vscode').lazy_load()
 -- focus.nvim
 require('focus').setup { enable = not vim.opt.diff:get() }
 
+-- qf_helper.nvim
+require('qf_helper').setup {
+    quickfix = {
+        default_bindings = false,
+        min_height = 10,
+    },
+    loclist = {
+        default_bindings = false,
+        min_height = 10,
+    },
+}
+
 -- vim-gutentags
 vim.g.gutentags_cache_dir = '~/.cache/ctags'

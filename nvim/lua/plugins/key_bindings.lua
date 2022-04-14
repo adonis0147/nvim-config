@@ -76,3 +76,7 @@ local setup_luasnip_keymaps = function()
 end
 
 setup_luasnip_keymaps()
+
+-- qf_helper.nvim
+vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>QFToggle!<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>LLToggle!<cr>', { noremap = true, silent = true })
