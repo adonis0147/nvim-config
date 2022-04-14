@@ -1,6 +1,6 @@
 require('plugins.plugins')
 
-local configure_plugins = function()
+local function configure_plugins()
     require('plugins.settings')
     require('plugins.key_bindings')
 end

@@ -39,6 +39,7 @@ require('packer').startup(function()
     use 'tpope/vim-repeat'
     use 'junegunn/vim-easy-align'
     use 'azabiong/vim-highlighter'
+    use 'ojroques/vim-oscyank'
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
     use 'ludovicchabant/vim-gutentags'
 end)

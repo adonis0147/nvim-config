@@ -78,14 +78,15 @@ vim.g.kommentary_create_default_mappings = false
 -- nvim-cmp
 vim.opt.completeopt = 'menu,menuone,noselect'
 local cmp = require('cmp')
-local select_next_item = function(fallback)
+local function select_next_item(fallback)
     if cmp.visible() then
         cmp.select_next_item()
     else
         fallback()
     end
 end
-local select_prev_item = function(fallback)
+
+local function select_prev_item(fallback)
     if cmp.visible() then
         cmp.select_prev_item()
     else
@@ -99,7 +100,7 @@ cmp.setup {
             require('luasnip').lsp_expand(args.body)
         end,
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ['<c-p>'] = cmp.mapping.select_prev_item(),
         ['<c-n>'] = cmp.mapping.select_next_item(),
         ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -113,7 +114,7 @@ cmp.setup {
         ['<s-tab>'] = select_prev_item,
         ['<c-l>'] = select_next_item,
         ['<c-h>'] = select_prev_item,
-    },
+    }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
@@ -125,11 +126,13 @@ cmp.setup {
 
 -- cmp-cmdline
 cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = 'buffer' }
     }
 })
 cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = 'path' }
     }, {
@@ -168,6 +171,34 @@ require('qf_helper').setup {
         min_height = 10,
     },
 }
+
+-- vim-oscyank
+local function setup_clipboard()
+    local function copy(lines, _)
+        vim.fn.OSCYankString(table.concat(lines, '\n'))
+    end
+
+    local function paste()
+        return {
+            vim.fn.split(vim.fn.getreg(''), '\n'),
+            vim.fn.getregtype('')
+        }
+    end
+
+    vim.g.clipboard = {
+        name = 'osc52',
+        copy = {
+            ['+'] = copy,
+            ['*'] = copy
+        },
+        paste = {
+            ['+'] = paste,
+            ['*'] = paste
+        }
+    }
+end
+
+setup_clipboard()
 
 -- vim-gutentags
 vim.g.gutentags_cache_dir = '~/.cache/ctags'

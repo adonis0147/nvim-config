@@ -24,15 +24,15 @@ vim.api.nvim_set_keymap('n', '<leader>cc', '<plug>kommentary_line_default', {})
 vim.api.nvim_set_keymap('x', '<leader>cc', '<plug>kommentary_visual_default', {})
 
 -- LuaSnip
-local setup_luasnip_keymaps = function()
+local function setup_luasnip_keymaps()
     local luasnip = require('luasnip')
     local cmp = require('cmp')
 
-    local t = function(str)
+    local function t(str)
         return vim.api.nvim_replace_termcodes(str, true, true, true)
     end
 
-    local check_back_space = function()
+    local function check_back_space()
         local col = vim.fn.col('.') - 1
         if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
             return true

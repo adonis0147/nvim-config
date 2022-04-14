@@ -30,7 +30,7 @@ vim.opt.fileformats = 'unix,dos'
 vim.opt.timeoutlen = 500
 
 -- Set the clipboard
-vim.opt.clipboard = 'unnamed'
+vim.opt.clipboard:prepend('unnamed,unnamedplus')
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 7
