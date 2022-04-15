@@ -196,6 +196,7 @@ local function setup_clipboard()
             ['*'] = paste
         }
     }
+    vim.g.oscyank_term = 'tmux'
 end
 
 setup_clipboard()
