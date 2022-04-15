@@ -199,6 +199,3 @@ local function setup_clipboard()
 end
 
 setup_clipboard()
-
--- vim-gutentags
-vim.g.gutentags_cache_dir = '~/.cache/ctags'

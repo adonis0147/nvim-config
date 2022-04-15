@@ -41,5 +41,4 @@ require('packer').startup(function()
     use 'azabiong/vim-highlighter'
     use 'ojroques/vim-oscyank'
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
-    use 'ludovicchabant/vim-gutentags'
 end)
