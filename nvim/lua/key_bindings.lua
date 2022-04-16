@@ -24,10 +24,12 @@ vim.api.nvim_set_keymap('', '<c-l>', '<c-w>l', { noremap = true })
 -- Easier moving between tabs
 vim.api.nvim_set_keymap('n', '<leader>n', '<cmd>bprevious<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>m', '<cmd>bnext<cr>', { noremap = true })
+vim.api.nvim_set_keymap('t', '<leader>n', '<cmd>bprevious<cr>', { noremap = true })
+vim.api.nvim_set_keymap('t', '<leader>m', '<cmd>bnext<cr>', { noremap = true })
 
 -- Easier moving of code blocks
-vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
-vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
+vim.api.nvim_set_keymap('x', '<', '<gv', { noremap = true })
+vim.api.nvim_set_keymap('x', '>', '>gv', { noremap = true })
 
 --------------------------------------------------------------------------------
 --                                  Autocmds                                  --

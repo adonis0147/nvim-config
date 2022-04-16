@@ -16,7 +16,7 @@ vim.api.nvim_set_keymap('x', '<leader>j', '<cmd>HopChar2AC<CR>', { noremap = tru
 vim.api.nvim_set_keymap('x', '<leader>k', '<cmd>HopChar2BC<CR>', { noremap = true })
 
 -- vim-easy-align
-vim.api.nvim_set_keymap('v', '<enter>', '<plug>(EasyAlign)', {})
+vim.api.nvim_set_keymap('x', '<enter>', '<plug>(EasyAlign)', {})
 vim.api.nvim_set_keymap('n', 'ga', '<plug>(EasyAlign)', {})
 
 -- kommentary
