@@ -35,6 +35,7 @@ require('packer').startup(function()
     use 'nvim-treesitter/nvim-treesitter'
     use 'beauwilliams/focus.nvim'
     use 'stevearc/qf_helper.nvim'
+    use 'lewis6991/spellsitter.nvim'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'junegunn/vim-easy-align'

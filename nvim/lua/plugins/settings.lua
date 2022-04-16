@@ -172,6 +172,9 @@ require('qf_helper').setup {
     },
 }
 
+-- spellsitter.nvim
+require('spellsitter').setup {}
+
 -- vim-oscyank
 local function setup_clipboard()
     local function copy(lines, _)
