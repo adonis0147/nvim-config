@@ -40,7 +40,12 @@ telescope.load_extension('fzf')
 vim.api.nvim_command('autocmd User TelescopePreviewerLoaded setlocal wrap')
 
 -- project.nvim
-require('project_nvim').setup {}
+require('project_nvim').setup {
+    detection_methods = { 'pattern' },
+    patterns = { '.git' },
+    silent_chdir = false,
+}
+telescope.load_extension('projects')
 
 -- nvim-bufferline
 local get_hex = require('cokeline/utils').get_hex
