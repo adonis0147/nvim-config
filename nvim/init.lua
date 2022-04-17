@@ -1,4 +1,5 @@
 require('settings')
-require('key_bindings')
 require('functions')
+require('key_bindings')
+require('autocmds')
 require('plugins.init')

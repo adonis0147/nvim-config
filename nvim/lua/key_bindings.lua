@@ -31,6 +31,9 @@ vim.api.nvim_set_keymap('t', '<leader>m', '<cmd>bnext<cr>', { noremap = true })
 vim.api.nvim_set_keymap('x', '<', '<gv', { noremap = true })
 vim.api.nvim_set_keymap('x', '>', '>gv', { noremap = true })
 
+-- Spell checking
+vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua require("functions").toggle_spell_checking()<cr>', { noremap = true })
+
 --------------------------------------------------------------------------------
 --                                  Autocmds                                  --
 --------------------------------------------------------------------------------

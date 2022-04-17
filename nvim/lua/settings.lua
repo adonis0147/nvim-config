@@ -35,9 +35,6 @@ vim.opt.clipboard:prepend('unnamed,unnamedplus')
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 7
 
--- Spell checking
-vim.opt.spell = true
-
 --------------------------------------------------------------------------------
 --                               User Interface                               --
 --------------------------------------------------------------------------------

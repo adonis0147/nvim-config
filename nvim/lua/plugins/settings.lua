@@ -43,7 +43,7 @@ vim.api.nvim_command('autocmd User TelescopePreviewerLoaded setlocal wrap')
 require('project_nvim').setup {
     detection_methods = { 'pattern' },
     patterns = { '.git' },
-    silent_chdir = false,
+    silent_chdir = true,
 }
 telescope.load_extension('projects')
 
