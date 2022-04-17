@@ -45,7 +45,6 @@ require('project_nvim').setup {
     patterns = { '.git' },
     silent_chdir = true,
 }
-telescope.load_extension('projects')
 
 -- nvim-bufferline
 local get_hex = require('cokeline/utils').get_hex
