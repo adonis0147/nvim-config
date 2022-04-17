@@ -33,6 +33,7 @@ require('packer').startup(function()
     use 'rafamadriz/friendly-snippets'
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
+    use 'jose-elias-alvarez/null-ls.nvim'
     use 'nvim-treesitter/nvim-treesitter'
     use 'beauwilliams/focus.nvim'
     use 'stevearc/qf_helper.nvim'

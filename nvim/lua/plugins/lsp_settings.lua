@@ -89,3 +89,15 @@ lsp_installer.on_server_ready(function(server)
 
     server:setup(opts)
 end)
+
+-- null-ls.nvim
+local null_ls = require('null-ls')
+null_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    sources = {
+        null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.formatting.shfmt,
+    },
+}
