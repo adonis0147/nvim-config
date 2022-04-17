@@ -15,6 +15,9 @@ require('lualine').setup {
     }
 }
 
+-- close-buffers.nvim
+require('close_buffers').setup {}
+
 -- telescope.nvim
 local telescope = require('telescope')
 local actions = require('telescope.actions')

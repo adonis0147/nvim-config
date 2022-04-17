@@ -13,8 +13,14 @@ vim.api.nvim_set_keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { n
 for i = 1, 9 do
     vim.api.nvim_set_keymap('n', ('<m-%s>'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
 end
+vim.api.nvim_set_keymap('n', '<leader>n', '<Plug>(cokeline-focus-prev)', {})
+vim.api.nvim_set_keymap('n', '<leader>m', '<Plug>(cokeline-focus-next)', {})
 vim.api.nvim_set_keymap('n', '<leader>N', '<Plug>(cokeline-switch-prev)', {})
-vim.api.nvim_set_keymap('n', '<leader>M', '<Plug>(cokeline-switch-prev)', {})
+vim.api.nvim_set_keymap('n', '<leader>M', '<Plug>(cokeline-switch-next)', {})
+
+-- close-buffers.nvim
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>BDelete other<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>B', '<cmd>BDelete! other<cr>', { noremap = true })
 
 -- hop.nvim
 vim.api.nvim_set_keymap('n', 's', '<cmd>HopChar2AC<CR>', { noremap = true })

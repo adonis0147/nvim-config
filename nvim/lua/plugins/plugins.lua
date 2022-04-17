@@ -7,6 +7,7 @@ require('packer').startup(function()
     use 'tanvirtin/monokai.nvim'
     use 'nvim-lualine/lualine.nvim'
     use 'noib3/nvim-bufferline'
+    use 'kazhala/close-buffers.nvim'
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
