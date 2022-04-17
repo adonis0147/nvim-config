@@ -9,6 +9,13 @@ vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { norem
 vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { noremap = true })
 
+-- nvim-bufferline
+for i = 1, 9 do
+    vim.api.nvim_set_keymap('n', ('<m-%s>'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
+end
+vim.api.nvim_set_keymap('n', '<leader>N', '<Plug>(cokeline-switch-prev)', {})
+vim.api.nvim_set_keymap('n', '<leader>M', '<Plug>(cokeline-switch-prev)', {})
+
 -- hop.nvim
 vim.api.nvim_set_keymap('n', 's', '<cmd>HopChar2AC<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'S', '<cmd>HopChar2BC<CR>', { noremap = true })

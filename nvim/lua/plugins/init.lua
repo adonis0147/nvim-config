@@ -5,10 +5,9 @@ local function configure_plugins()
     require('plugins.key_bindings')
 end
 
-local ok, error = pcall(configure_plugins)
-if not ok then
+if not pcall(configure_plugins) then
     vim.api.nvim_command('colorscheme desert')
-    print('Errors occurred when configuring plugins. [ERROR] ' .. error)
+    print('Errors occurred when configuring plugins')
 end
 
 -- Highlights

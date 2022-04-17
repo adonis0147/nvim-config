@@ -56,7 +56,7 @@ require('cokeline').setup {
     },
     components = {
         {
-            text = function(buffer) return ' ' .. buffer.filename .. ' ' end,
+            text = function(buffer) return ' ' .. buffer.index .. ': ' .. buffer.filename .. ' ' end,
         },
         {
             text = '[×]',
