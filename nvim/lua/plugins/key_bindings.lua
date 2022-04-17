@@ -19,8 +19,8 @@ vim.api.nvim_set_keymap('n', '<leader>N', '<Plug>(cokeline-switch-prev)', {})
 vim.api.nvim_set_keymap('n', '<leader>M', '<Plug>(cokeline-switch-next)', {})
 
 -- close-buffers.nvim
-vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>BDelete other<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>B', '<cmd>BDelete! other<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>lua require("functions").delete_other_buffers(false)<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>B', '<cmd>lua require("functions").delete_other_buffers(true)<cr>', { noremap = true })
 
 -- hop.nvim
 vim.api.nvim_set_keymap('n', 's', '<cmd>HopChar2AC<CR>', { noremap = true })
