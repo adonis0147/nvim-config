@@ -66,9 +66,23 @@ require('cokeline').setup {
             text = function(buffer) return ' ' .. buffer.index .. ': ' .. buffer.filename .. ' ' end,
         },
         {
-            text = '[×]',
+            text = function(buffer)
+                return buffer.is_modified and '●' or '✘'
+            end,
+            fg = function(buffer)
+                if buffer.is_modified then
+                    return 'Orange'
+                elseif buffer.is_focused then
+                    return 'DarkGreen'
+                else
+                    return 'LightGreen'
+                end
+            end,
             delete_buffer_on_left_click = true,
         },
+        {
+            text = ' '
+        }
     },
 }
 
