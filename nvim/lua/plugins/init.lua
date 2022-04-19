@@ -11,4 +11,4 @@ if not pcall(configure_plugins) then
 end
 
 -- Highlights
-vim.api.nvim_command('highlight MatchParen ctermbg=None ctermfg=Red cterm=bold')
+vim.api.nvim_command('highlight MatchParen ctermbg=None ctermfg=Red cterm=bold gui=bold')
