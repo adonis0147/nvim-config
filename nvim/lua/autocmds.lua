@@ -3,4 +3,4 @@
 --------------------------------------------------------------------------------
 
 -- Termnial
-vim.api.nvim_command('autocmd TermOpen * setlocal nonumber | setlocal nospell | startinsert')
+vim.cmd('autocmd TermOpen * setlocal nonumber | setlocal nospell | startinsert')

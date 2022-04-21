@@ -2,42 +2,46 @@
 --                                  Mappings                                  --
 --------------------------------------------------------------------------------
 
--- telescope.nvim
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { noremap = true })
-
--- nvim-bufferline
-for i = 1, 9 do
-    vim.api.nvim_set_keymap('n', ('<m-%s>'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
+local function setup_nvim_bufferline_keymaps()
+    for i = 1, 9 do
+        vim.keymap.set('n', ('<m-%s>'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
+    end
+    vim.keymap.set('n', '<leader>n', '<Plug>(cokeline-focus-prev)', {})
+    vim.keymap.set('n', '<leader>m', '<Plug>(cokeline-focus-next)', {})
+    vim.keymap.set('n', '<leader>N', '<Plug>(cokeline-switch-prev)', {})
+    vim.keymap.set('n', '<leader>M', '<Plug>(cokeline-switch-next)', {})
 end
-vim.api.nvim_set_keymap('n', '<leader>n', '<Plug>(cokeline-focus-prev)', {})
-vim.api.nvim_set_keymap('n', '<leader>m', '<Plug>(cokeline-focus-next)', {})
-vim.api.nvim_set_keymap('n', '<leader>N', '<Plug>(cokeline-switch-prev)', {})
-vim.api.nvim_set_keymap('n', '<leader>M', '<Plug>(cokeline-switch-next)', {})
 
--- close-buffers.nvim
-vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>lua require("functions").delete_other_buffers(false)<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>B', '<cmd>lua require("functions").delete_other_buffers(true)<cr>', { noremap = true })
+local function setup_close_buffers_nvim_keymaps()
+    local functions = require('functions')
+    vim.keymap.set('n', '<leader>b', function() functions.delete_other_buffers(false) end, { noremap = true })
+    vim.keymap.set('n', '<leader>B', function() functions.delete_other_buffers(true) end, { noremap = true })
+end
 
--- hop.nvim
-vim.api.nvim_set_keymap('n', 's', '<cmd>HopChar2AC<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'S', '<cmd>HopChar2BC<CR>', { noremap = true })
-vim.api.nvim_set_keymap('x', '<leader>j', '<cmd>HopChar2AC<CR>', { noremap = true })
-vim.api.nvim_set_keymap('x', '<leader>k', '<cmd>HopChar2BC<CR>', { noremap = true })
+local function setup_hop_nvim_keymaps()
+    vim.keymap.set('n', 's', '<cmd>HopChar2AC<CR>', { noremap = true })
+    vim.keymap.set('n', 'S', '<cmd>HopChar2BC<CR>', { noremap = true })
+    vim.keymap.set('x', '<leader>j', '<cmd>HopChar2AC<CR>', { noremap = true })
+    vim.keymap.set('x', '<leader>k', '<cmd>HopChar2BC<CR>', { noremap = true })
+end
 
--- vim-easy-align
-vim.api.nvim_set_keymap('x', '<enter>', '<plug>(EasyAlign)', {})
-vim.api.nvim_set_keymap('n', 'ga', '<plug>(EasyAlign)', {})
+local function setup_kommentary_keymaps()
+    vim.keymap.set('n', '<leader>cc', '<plug>kommentary_line_default', {})
+    vim.keymap.set('x', '<leader>cc', '<plug>kommentary_visual_default', {})
+end
 
--- kommentary
-vim.api.nvim_set_keymap('n', '<leader>cc', '<plug>kommentary_line_default', {})
-vim.api.nvim_set_keymap('x', '<leader>cc', '<plug>kommentary_visual_default', {})
+local function setup_telescope_nvim_keymaps()
+    local telescope = require('telescope')
+    vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { noremap = true })
+    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_raw.live_grep_raw, { noremap = true })
+    vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap = true })
+    vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true })
+    vim.keymap.set('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { noremap = true })
+end
 
--- LuaSnip
 local function setup_luasnip_keymaps()
+    vim.cmd('PackerLoad LuaSnip')
+
     local luasnip = require('luasnip')
     local cmp = require('cmp')
 
@@ -78,18 +82,29 @@ local function setup_luasnip_keymaps()
         return ''
     end
 
-    vim.api.nvim_set_keymap('i', '<tab>', 'v:lua.luasnip_expand_or_jump("<tab>")', { expr = true })
-    vim.api.nvim_set_keymap('s', '<tab>', 'v:lua.luasnip_expand_or_jump("<tab>")', { expr = true })
-    vim.api.nvim_set_keymap('i', '<s-tab>', 'v:lua.luasnip_jump_prev("<s-tab>")', { expr = true })
-    vim.api.nvim_set_keymap('s', '<s-tab>', 'v:lua.luasnip_jump_prev("<s-tab>")', { expr = true })
-    vim.api.nvim_set_keymap('i', '<c-l>', 'v:lua.luasnip_expand_or_jump("<c-l>")', { expr = true })
-    vim.api.nvim_set_keymap('s', '<c-l>', 'v:lua.luasnip_expand_or_jump("<c-l>")', { expr = true })
-    vim.api.nvim_set_keymap('i', '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true })
-    vim.api.nvim_set_keymap('s', '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true })
+    vim.keymap.set({ 'i', 's' }, '<tab>', 'v:lua.luasnip_expand_or_jump("<tab>")', { expr = true })
+    vim.keymap.set({ 'i', 's' }, '<s-tab>', 'v:lua.luasnip_jump_prev("<s-tab>")', { expr = true })
+    vim.keymap.set({ 'i', 's' }, '<c-l>', 'v:lua.luasnip_expand_or_jump("<c-l>")', { expr = true })
+    vim.keymap.set({ 'i', 's' }, '<c-h>', 'v:lua.luasnip_jump_prev("<c-h>")', { expr = true })
 end
 
-setup_luasnip_keymaps()
+local function setup_qf_helper_nvim_keymaps()
+    vim.keymap.set('n', '<leader>q', '<cmd>QFToggle!<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>l', '<cmd>LLToggle!<cr>', { noremap = true, silent = true })
+end
 
--- qf_helper.nvim
-vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>QFToggle!<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>LLToggle!<cr>', { noremap = true, silent = true })
+local function setup_vim_easy_align_keymaps()
+    vim.keymap.set('x', '<enter>', '<plug>(EasyAlign)', {})
+    vim.keymap.set('n', 'ga', '<plug>(EasyAlign)', {})
+end
+
+return {
+    setup_nvim_bufferline_keymaps    = setup_nvim_bufferline_keymaps,
+    setup_close_buffers_nvim_keymaps = setup_close_buffers_nvim_keymaps,
+    setup_hop_nvim_keymaps           = setup_hop_nvim_keymaps,
+    setup_kommentary_keymaps         = setup_kommentary_keymaps,
+    setup_telescope_nvim_keymaps     = setup_telescope_nvim_keymaps,
+    setup_luasnip_keymaps            = setup_luasnip_keymaps,
+    setup_qf_helper_nvim_keymaps     = setup_qf_helper_nvim_keymaps,
+    setup_vim_easy_align_keymaps     = setup_vim_easy_align_keymaps,
+}

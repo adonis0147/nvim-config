@@ -12,14 +12,14 @@ end
 
 local function delete_other_buffers(force)
     if not force then
-        vim.api.nvim_command('BDelete other')
+        vim.cmd('BDelete other')
     else
-        vim.api.nvim_command('BDelete! other')
+        vim.cmd('BDelete! other')
     end
-    vim.api.nvim_command('redraw')
+    vim.cmd('redraw')
 end
 
 return {
     toggle_spell_checking = toggle_spell_checking,
-    delete_other_buffers = delete_other_buffers,
+    delete_other_buffers  = delete_other_buffers,
 }

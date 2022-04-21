@@ -52,7 +52,7 @@ vim.opt.matchtime = 0
 vim.opt.colorcolumn = tostring(text_width)
 
 -- Colorschema
-vim.api.nvim_command('colorscheme desert')
+vim.cmd('colorscheme desert')
 
 -- Termguicolors
 vim.opt.termguicolors = true

@@ -2,46 +2,72 @@
 --                                  Plugins                                   --
 --------------------------------------------------------------------------------
 
+local settings = require('plugins.settings')
+local key_bindings = require('plugins.key_bindings')
+
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
-    use 'tanvirtin/monokai.nvim'
-    use 'nvim-lualine/lualine.nvim'
-    use 'noib3/nvim-bufferline'
-    use 'kazhala/close-buffers.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use { 'tanvirtin/monokai.nvim', config = settings.setup_monokai_nvim }
+    use {
+        'nvim-lualine/lualine.nvim', config = settings.setup_lualine_nvim,
+        opt = true, event = 'BufEnter'
+    }
+    use { 'noib3/nvim-bufferline', config = settings.setup_nvim_bufferline }
+    use { 'kazhala/close-buffers.nvim', config = settings.setup_close_buffers_nvim }
+    use { 'phaazon/hop.nvim', config = settings.setup_hop_nvim }
+    use {
+        'windwp/nvim-autopairs', config = settings.setup_nvim_autopairs,
+        opt = true, event = 'InsertEnter'
+    }
+    use {
+        'b3nj5m1n/kommentary', config = settings.setup_kommentary,
+        opt = true, keys = '<leader>cc'
+    }
+    use {
+        'beauwilliams/focus.nvim', config = settings.setup_focus_nvim,
+        opt = true, cond = 'not vim.opt.diff:get()'
+    }
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
-            'nvim-lua/plenary.nvim',
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
             'nvim-telescope/telescope-live-grep-raw.nvim',
-            'ahmedkhalf/project.nvim',
-        }
+        },
+        config = settings.setup_telescope_nvim,
+        opt = true,
+        keys = { '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh', '<leader>fw' },
     }
-    use 'phaazon/hop.nvim'
-    use 'windwp/nvim-autopairs'
-    use 'b3nj5m1n/kommentary'
+    use { 'ahmedkhalf/project.nvim', config = settings.setup_project_nvim }
     use {
         'hrsh7th/nvim-cmp',
         requires = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-nvim-lsp',
-        }
+            { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/cmp-cmdline' },
+        },
+        config = settings.setup_nvim_cmp,
+        opt = true,
+        event = { 'InsertEnter', 'CmdlineEnter' },
     }
-    use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
-    use 'rafamadriz/friendly-snippets'
-    use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
-    use 'jose-elias-alvarez/null-ls.nvim'
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'beauwilliams/focus.nvim'
-    use 'stevearc/qf_helper.nvim'
-    use 'lewis6991/spellsitter.nvim'
+    use { 'rafamadriz/friendly-snippets', opt = true }
+    use {
+        'williamboman/nvim-lsp-installer',
+        requires = {
+            { 'neovim/nvim-lspconfig' },
+            { 'hrsh7th/cmp-nvim-lsp' }
+        },
+        config = settings.setup_lsp,
+    }
+    use { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim }
+    use { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter }
+    use { 'lewis6991/spellsitter.nvim', config = settings.setup_spellsitter_nvim }
+    use { 'stevearc/qf_helper.nvim', config = settings.setup_qf_helper_nvim }
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
-    use 'junegunn/vim-easy-align'
     use 'azabiong/vim-highlighter'
-    use 'ojroques/vim-oscyank'
+    use { 'junegunn/vim-easy-align', config = key_bindings.setup_vim_easy_align_keymaps }
+    use { 'ojroques/vim-oscyank', config = settings.setup_clipboard }
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
 end)
