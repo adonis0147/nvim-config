@@ -30,7 +30,7 @@ vim.keymap.set('x', '<', '<gv', { noremap = true })
 vim.keymap.set('x', '>', '>gv', { noremap = true })
 
 -- Spell checking
-vim.keymap.set('n', '<leader>s', require("functions").toggle_spell_checking, { noremap = true })
+vim.keymap.set('n', '<leader>s', require('functions').toggle_spell_checking, { noremap = true })
 
 --------------------------------------------------------------------------------
 --                                  Autocmds                                  --

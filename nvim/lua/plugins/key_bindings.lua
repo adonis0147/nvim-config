@@ -89,8 +89,25 @@ local function setup_luasnip_keymaps()
 end
 
 local function setup_qf_helper_nvim_keymaps()
+    local function close_qf_or_buffer()
+        local win_info = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
+        local is_quickfix = (win_info['quickfix'] == 1)
+        local is_loclist = (win_info['loclist'] == 1)
+
+        if is_quickfix then
+            if not is_loclist then
+                vim.cmd('QFToggle!')
+            else
+                vim.cmd('LLToggle!')
+            end
+        else
+            vim.cmd('bdelete')
+        end
+    end
+
     vim.keymap.set('n', '<leader>q', '<cmd>QFToggle!<cr>', { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>l', '<cmd>LLToggle!<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>e', close_qf_or_buffer, { noremap = true })
 end
 
 local function setup_vim_easy_align_keymaps()
