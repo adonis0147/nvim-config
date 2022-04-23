@@ -232,6 +232,10 @@ local function setup_qf_helper_nvim()
     require('plugins.key_bindings').setup_qf_helper_nvim_keymaps()
 end
 
+local function setup_nvim_colorizer_lua()
+    require('colorizer').setup {}
+end
+
 local function setup_clipboard()
     local function copy(lines, _)
         vim.fn.OSCYankString(table.concat(lines, '\n'))
@@ -275,5 +279,6 @@ return {
     setup_nvim_treesitter    = setup_nvim_treesitter,
     setup_spellsitter_nvim   = setup_spellsitter_nvim,
     setup_qf_helper_nvim     = setup_qf_helper_nvim,
+    setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
     setup_clipboard          = setup_clipboard,
 }
