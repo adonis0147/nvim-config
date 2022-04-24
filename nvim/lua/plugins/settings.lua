@@ -75,7 +75,9 @@ end
 
 local function setup_kommentary()
     vim.g.kommentary_create_default_mappings = false
-    require('kommentary')
+    require('kommentary.config').configure_language('default', {
+        prefer_single_line_comments = true,
+    })
     require('plugins.key_bindings').setup_kommentary_keymaps()
 end
 
