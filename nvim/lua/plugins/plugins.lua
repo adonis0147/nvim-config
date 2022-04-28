@@ -15,7 +15,7 @@ require('packer').startup(function()
     }
     use { 'noib3/nvim-bufferline', config = settings.setup_nvim_bufferline }
     use { 'kazhala/close-buffers.nvim', config = settings.setup_close_buffers_nvim }
-    use { 'phaazon/hop.nvim', config = settings.setup_hop_nvim }
+    use { 'phaazon/hop.nvim', config = settings.setup_hop_nvim, after = 'monokai.nvim' }
     use {
         'windwp/nvim-autopairs', config = settings.setup_nvim_autopairs,
         opt = true, event = 'InsertEnter'
