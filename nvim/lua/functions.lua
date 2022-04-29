@@ -3,11 +3,12 @@
 --------------------------------------------------------------------------------
 
 local function toggle_spell_checking()
-    if not vim.opt.spell:get() then
-        vim.opt.spell = true
+    if not vim.wo.spell then
+        vim.wo.spell = true
     else
-        vim.opt.spell = false
+        vim.wo.spell = false
     end
+    print('Spell checking: ' .. (vim.wo.spell and 'on' or 'off'))
 end
 
 local function delete_other_buffers(force)
