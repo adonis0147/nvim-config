@@ -190,8 +190,7 @@ local function setup_nvim_cmp()
 
     -- Load snippets
     vim.cmd('PackerLoad friendly-snippets')
-    require('luasnip.loaders.from_vscode').lazy_load()
-    vim.cmd('doautocmd _luasnip_vscode_lazy_load BufWinEnter')
+    require('luasnip.loaders.from_vscode').load()
 end
 
 local function setup_lsp()
