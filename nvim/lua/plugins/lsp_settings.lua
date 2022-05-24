@@ -47,7 +47,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local function setup_lsp_installer()
-    local lsp_installer = require('nvim-lsp-installer')
+    require('nvim-lsp-installer').setup {}
+
     local enhance_server_opts = {
         -- See `:help lsp.txt`
         ['sumneko_lua'] = function(opts)
@@ -78,7 +79,9 @@ local function setup_lsp_installer()
         end,
     }
 
-    lsp_installer.on_server_ready(function(server)
+    local lspconfig = require("lspconfig")
+    local servers = require('nvim-lsp-installer.servers').get_installed_servers()
+    for _, server in pairs(servers) do
         -- Specify the default options which we'll use to setup all servers
         local opts = {
             on_attach = on_attach,
@@ -90,8 +93,8 @@ local function setup_lsp_installer()
             enhance_server_opts[server.name](opts)
         end
 
-        server:setup(opts)
-    end)
+        lspconfig[server.name].setup(opts)
+    end
 end
 
 local function setup_null_ls_nvim()
