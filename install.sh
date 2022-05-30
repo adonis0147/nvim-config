@@ -50,6 +50,7 @@ function install_nvim_config() {
 		mkdir -p 'backup'
 		mv "${install_path}" "backup/nvim.$(date +'%Y%m%d%H%M%S')"
 	fi
+	mkdir -p "${HOME}/.config"
 	pushd nvim >/dev/null
 	ln -snf "$(pwd)" "${install_path}"
 	popd >/dev/null
