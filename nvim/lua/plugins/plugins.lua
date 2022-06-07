@@ -32,7 +32,7 @@ require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-            'nvim-telescope/telescope-live-grep-raw.nvim',
+            'nvim-telescope/telescope-live-grep-args.nvim',
         },
         config = settings.setup_telescope_nvim,
         opt = true,

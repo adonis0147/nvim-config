@@ -112,7 +112,7 @@ local function setup_telescope_nvim()
 
     vim.cmd('autocmd User TelescopePreviewerLoaded setlocal wrap')
 
-    vim.cmd('PackerLoad telescope-live-grep-raw.nvim')
+    vim.cmd('PackerLoad telescope-live-grep-args.nvim')
     require('plugins.key_bindings').setup_telescope_nvim_keymaps()
 end
 
