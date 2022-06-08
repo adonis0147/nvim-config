@@ -33,7 +33,7 @@ end
 local function setup_telescope_nvim_keymaps()
     local telescope = require('telescope')
     vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { noremap = true })
-    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_raw.live_grep_raw, { noremap = true })
+    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { noremap = true })
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap = true })
     vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true })
     vim.keymap.set('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { noremap = true })
