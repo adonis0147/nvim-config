@@ -103,6 +103,14 @@ local function setup_telescope_nvim()
                 override_generic_sorter = true,
                 override_file_sorter = true,
                 case_mode = 'smart_case',
+            },
+            live_grep_args = {
+                mappings = {
+                    i = {
+                        ['<C-j>'] = actions.move_selection_next,
+                        ['<C-k>'] = actions.move_selection_previous,
+                    }
+                }
             }
         }
     }
