@@ -53,10 +53,11 @@ require('packer').startup(function()
     }
     use { 'rafamadriz/friendly-snippets', opt = true }
     use {
-        'williamboman/nvim-lsp-installer',
+        'williamboman/mason.nvim',
         requires = {
+            { 'williamboman/mason-lspconfig.nvim' },
             { 'neovim/nvim-lspconfig' },
-            { 'hrsh7th/cmp-nvim-lsp' }
+            { 'hrsh7th/cmp-nvim-lsp' },
         },
         config = settings.setup_lsp,
     }

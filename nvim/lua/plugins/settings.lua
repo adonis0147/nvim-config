@@ -203,7 +203,7 @@ end
 
 local function setup_lsp()
     local lsp_settings = require('plugins.lsp_settings')
-    lsp_settings.setup_lsp_installer()
+    lsp_settings.setup_mason()
     lsp_settings.setup_diagnostic_keymaps()
 end
 

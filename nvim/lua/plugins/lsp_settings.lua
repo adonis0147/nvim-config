@@ -48,8 +48,9 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local function setup_lsp_installer()
-    require('nvim-lsp-installer').setup {}
+local function setup_mason()
+    require("mason").setup {}
+    require("mason-lspconfig").setup {}
 
     local enhance_server_opts = {
         -- See `:help lsp.txt`
@@ -81,8 +82,8 @@ local function setup_lsp_installer()
         end,
     }
 
-    local lspconfig = require("lspconfig")
-    local servers = require('nvim-lsp-installer.servers').get_installed_servers()
+    local lspconfig = require('lspconfig')
+    local servers = require('mason-lspconfig').get_installed_servers()
     for _, server in pairs(servers) do
         -- Specify the default options which we'll use to setup all servers
         local opts = {
@@ -90,12 +91,11 @@ local function setup_lsp_installer()
             capabilities = capabilities,
         }
 
-        if enhance_server_opts[server.name] then
+        if enhance_server_opts[server] then
             -- Enhance the default opts with the server-specific ones
-            enhance_server_opts[server.name](opts)
+            enhance_server_opts[server](opts)
         end
-
-        lspconfig[server.name].setup(opts)
+        lspconfig[server].setup(opts)
     end
 end
 
@@ -114,6 +114,6 @@ end
 
 return {
     setup_diagnostic_keymaps = setup_diagnostic_keymaps,
-    setup_lsp_installer      = setup_lsp_installer,
+    setup_mason              = setup_mason,
     setup_null_ls_nvim       = setup_null_ls_nvim,
 }
