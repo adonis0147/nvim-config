@@ -228,18 +228,18 @@ local function setup_null_ls_nvim()
     require('plugins.lsp_settings').setup_null_ls_nvim()
 end
 
-local function setup_qf_helper_nvim()
-    require('qf_helper').setup {
-        quickfix = {
-            default_bindings = false,
-            min_height = 10,
+local function setup_qf_nvim()
+    require('qf').setup {
+        l = {
+            max_height = 10,
+            auto_resize = false,
         },
-        loclist = {
-            default_bindings = false,
-            min_height = 10,
+        c = {
+            max_height = 10,
+            auto_resize = false,
         },
     }
-    require('plugins.key_bindings').setup_qf_helper_nvim_keymaps()
+    require('plugins.key_bindings').setup_qf_nvim_keymaps()
 end
 
 local function setup_nvim_colorizer_lua()
@@ -288,7 +288,7 @@ return {
     setup_null_ls_nvim       = setup_null_ls_nvim,
     setup_nvim_treesitter    = setup_nvim_treesitter,
     setup_spellsitter_nvim   = setup_spellsitter_nvim,
-    setup_qf_helper_nvim     = setup_qf_helper_nvim,
+    setup_qf_nvim            = setup_qf_nvim,
     setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
     setup_clipboard          = setup_clipboard,
 }
