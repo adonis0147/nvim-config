@@ -26,7 +26,7 @@ require('packer').startup(function()
     }
     use {
         'beauwilliams/focus.nvim', config = settings.setup_focus_nvim,
-        opt = true, cond = 'not vim.opt.diff:get()', event = 'WinNew'
+        opt = true, cond = 'not vim.o.diff', event = 'BufNew'
     }
     use {
         'nvim-telescope/telescope.nvim',
