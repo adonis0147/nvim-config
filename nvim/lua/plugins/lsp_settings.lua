@@ -62,7 +62,7 @@ local function setup_mason()
                         path = vim.split(package.path, ';'),
                     },
                     diagnostics = {
-                        globals = { 'vim', 'use' },
+                        globals = { 'vim', 'use', 'packer_plugins' },
                     },
                     workspace = {
                         library = {

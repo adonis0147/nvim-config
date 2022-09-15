@@ -66,6 +66,7 @@ require('packer').startup(function()
     use { 'lewis6991/spellsitter.nvim', config = settings.setup_spellsitter_nvim }
     use { 'ten3roberts/qf.nvim', config = settings.setup_qf_nvim }
     use { 'norcalli/nvim-colorizer.lua', config = settings.setup_nvim_colorizer_lua, ft = { 'yaml' } }
+    use { 'sindrets/diffview.nvim', config = settings.setup_diffview_nvim }
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'azabiong/vim-highlighter'

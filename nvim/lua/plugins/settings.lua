@@ -246,6 +246,25 @@ local function setup_nvim_colorizer_lua()
     require('colorizer').setup {}
 end
 
+local function setup_diffview_nvim()
+    require("diffview").setup {
+        use_icons = false,
+        view = {
+            merge_tool = {
+                layout = "diff4_mixed",
+            },
+        },
+        hooks = {
+            view_opened = function(_)
+                local plugin = packer_plugins['focus.nvim']
+                if plugin and plugin.loaded then
+                    require('focus').focus_disable()
+                end
+            end
+        }
+    }
+end
+
 local function setup_clipboard()
     local function copy(lines, _)
         vim.fn.OSCYankString(table.concat(lines, '\n'))
@@ -290,5 +309,6 @@ return {
     setup_spellsitter_nvim   = setup_spellsitter_nvim,
     setup_qf_nvim            = setup_qf_nvim,
     setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
+    setup_diffview_nvim      = setup_diffview_nvim,
     setup_clipboard          = setup_clipboard,
 }
