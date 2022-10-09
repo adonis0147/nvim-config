@@ -34,11 +34,11 @@ local function on_attach(client, bufnr)
     vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, keymap_opts)
 
     -- Format code on save.
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         vim.cmd([[
             augroup LspFormatting
             autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
             augroup END
         ]])
     end
