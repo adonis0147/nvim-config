@@ -17,7 +17,7 @@ local function delete_other_buffers(force)
     else
         vim.cmd('BDelete! other')
     end
-    vim.cmd('redraw')
+    vim.cmd('redraw!')
 end
 
 return {

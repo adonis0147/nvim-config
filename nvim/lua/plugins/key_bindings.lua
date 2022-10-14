@@ -13,9 +13,8 @@ local function setup_nvim_bufferline_keymaps()
 end
 
 local function setup_close_buffers_nvim_keymaps()
-    local functions = require('functions')
-    vim.keymap.set('n', '<leader>b', function() functions.delete_other_buffers(false) end, { noremap = true })
-    vim.keymap.set('n', '<leader>B', function() functions.delete_other_buffers(true) end, { noremap = true })
+    vim.keymap.set('n', '<leader>b', function() require('functions').delete_other_buffers(false) end, { noremap = true })
+    vim.keymap.set('n', '<leader>B', function() require('functions').delete_other_buffers(true) end, { noremap = true })
 end
 
 local function setup_hop_nvim_keymaps()
