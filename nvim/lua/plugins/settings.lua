@@ -277,9 +277,11 @@ local function setup_diffview_nvim()
     }
 end
 
-local function setup_clipboard()
+local function setup_nvim_osc52()
+    require('osc52').setup {}
+
     local function copy(lines, _)
-        vim.fn.OSCYankString(table.concat(lines, '\n'))
+        require('osc52').copy(table.concat(lines, '\n'))
     end
 
     local function paste()
@@ -300,7 +302,6 @@ local function setup_clipboard()
             ['*'] = paste
         }
     }
-    vim.g.oscyank_term = 'default'
 end
 
 return {
@@ -318,9 +319,9 @@ return {
     setup_lsp                = setup_lsp,
     setup_null_ls_nvim       = setup_null_ls_nvim,
     setup_nvim_treesitter    = setup_nvim_treesitter,
+    setup_nvim_osc52         = setup_nvim_osc52,
     setup_spellsitter_nvim   = setup_spellsitter_nvim,
     setup_qf_nvim            = setup_qf_nvim,
     setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
     setup_diffview_nvim      = setup_diffview_nvim,
-    setup_clipboard          = setup_clipboard,
 }

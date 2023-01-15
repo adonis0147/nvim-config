@@ -63,6 +63,7 @@ require('packer').startup(function()
     }
     use { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim }
     use { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter }
+    use { 'ojroques/nvim-osc52', config = settings.setup_nvim_osc52 }
     use { 'lewis6991/spellsitter.nvim', config = settings.setup_spellsitter_nvim }
     use { 'ten3roberts/qf.nvim', config = settings.setup_qf_nvim }
     use { 'norcalli/nvim-colorizer.lua', config = settings.setup_nvim_colorizer_lua, ft = { 'yaml' } }
@@ -71,6 +72,5 @@ require('packer').startup(function()
     use 'tpope/vim-repeat'
     use 'azabiong/vim-highlighter'
     use { 'junegunn/vim-easy-align', config = key_bindings.setup_vim_easy_align_keymaps }
-    use { 'ojroques/vim-oscyank', config = settings.setup_clipboard }
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
 end)
