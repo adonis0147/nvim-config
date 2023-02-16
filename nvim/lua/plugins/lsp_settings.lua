@@ -52,7 +52,7 @@ local function setup_mason()
 
     local enhance_server_opts = {
         -- See `:help lsp.txt`
-        ['sumneko_lua'] = function(opts)
+        ['lua_ls'] = function(opts)
             opts.settings = {
                 Lua = {
                     runtime = {
