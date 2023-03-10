@@ -69,8 +69,15 @@ local function setup_hop_nvim()
     require('plugins.key_bindings').setup_hop_nvim_keymaps()
 end
 
-local function setup_nvim_autopairs()
-    require('nvim-autopairs').setup {}
+local function setup_ultimate_autopair_nvim()
+    require('ultimate-autopair').setup {
+        cr = {
+            addsemi = {},
+        },
+        extensions = {
+            { 'suround', {} },
+        },
+    }
 end
 
 local function setup_kommentary()
@@ -92,8 +99,8 @@ local function setup_telescope_nvim()
         defaults = {
             mappings = {
                 i = {
-                    ['<c-j>'] = actions.move_selection_next,
-                    ['<c-k>'] = actions.move_selection_previous,
+                        ['<c-j>'] = actions.move_selection_next,
+                        ['<c-k>'] = actions.move_selection_previous,
                 }
             }
         },
@@ -107,8 +114,8 @@ local function setup_telescope_nvim()
             live_grep_args = {
                 mappings = {
                     i = {
-                        ['<C-j>'] = actions.move_selection_next,
-                        ['<C-k>'] = actions.move_selection_previous,
+                            ['<C-j>'] = actions.move_selection_next,
+                            ['<C-k>'] = actions.move_selection_previous,
                     }
                 }
             }
@@ -174,14 +181,14 @@ local function setup_nvim_cmp()
             end,
         },
         mapping = cmp.mapping.preset.insert({
-            ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<c-f>'] = cmp.mapping.scroll_docs(4),
-            ['<c-e>'] = cmp.mapping.abort(),
-            ['<cr>'] = cmp.mapping.confirm({ select = true }),
-            ['<tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-            ['<s-tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
-            ['<c-l>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-            ['<c-h>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+                ['<c-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<c-f>'] = cmp.mapping.scroll_docs(4),
+                ['<c-e>'] = cmp.mapping.abort(),
+                ['<cr>'] = cmp.mapping.confirm({ select = true }),
+                ['<tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+                ['<s-tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+                ['<c-l>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+                ['<c-h>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
             { name = 'luasnip' },
@@ -294,34 +301,34 @@ local function setup_nvim_osc52()
     vim.g.clipboard = {
         name = 'osc52',
         copy = {
-            ['+'] = copy,
-            ['*'] = copy
+                ['+'] = copy,
+                ['*'] = copy
         },
         paste = {
-            ['+'] = paste,
-            ['*'] = paste
+                ['+'] = paste,
+                ['*'] = paste
         }
     }
 end
 
 return {
-    setup_monokai_nvim       = setup_monokai_nvim,
-    setup_lualine_nvim       = setup_lualine_nvim,
-    setup_nvim_bufferline    = setup_nvim_bufferline,
-    setup_close_buffers_nvim = setup_close_buffers_nvim,
-    setup_hop_nvim           = setup_hop_nvim,
-    setup_nvim_autopairs     = setup_nvim_autopairs,
-    setup_kommentary         = setup_kommentary,
-    setup_focus_nvim         = setup_focus_nvim,
-    setup_telescope_nvim     = setup_telescope_nvim,
-    setup_project_nvim       = setup_project_nvim,
-    setup_nvim_cmp           = setup_nvim_cmp,
-    setup_lsp                = setup_lsp,
-    setup_null_ls_nvim       = setup_null_ls_nvim,
-    setup_nvim_treesitter    = setup_nvim_treesitter,
-    setup_nvim_osc52         = setup_nvim_osc52,
-    setup_spellsitter_nvim   = setup_spellsitter_nvim,
-    setup_qf_nvim            = setup_qf_nvim,
-    setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
-    setup_diffview_nvim      = setup_diffview_nvim,
+    setup_monokai_nvim           = setup_monokai_nvim,
+    setup_lualine_nvim           = setup_lualine_nvim,
+    setup_nvim_bufferline        = setup_nvim_bufferline,
+    setup_close_buffers_nvim     = setup_close_buffers_nvim,
+    setup_hop_nvim               = setup_hop_nvim,
+    setup_ultimate_autopair_nvim = setup_ultimate_autopair_nvim,
+    setup_kommentary             = setup_kommentary,
+    setup_focus_nvim             = setup_focus_nvim,
+    setup_telescope_nvim         = setup_telescope_nvim,
+    setup_project_nvim           = setup_project_nvim,
+    setup_nvim_cmp               = setup_nvim_cmp,
+    setup_lsp                    = setup_lsp,
+    setup_null_ls_nvim           = setup_null_ls_nvim,
+    setup_nvim_treesitter        = setup_nvim_treesitter,
+    setup_nvim_osc52             = setup_nvim_osc52,
+    setup_spellsitter_nvim       = setup_spellsitter_nvim,
+    setup_qf_nvim                = setup_qf_nvim,
+    setup_nvim_colorizer_lua     = setup_nvim_colorizer_lua,
+    setup_diffview_nvim          = setup_diffview_nvim,
 }
