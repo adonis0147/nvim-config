@@ -312,10 +312,14 @@ local function setup_nvim_osc52()
 end
 
 local function setup_vim_silicon()
-    -- silicon --theme 'Monokai Extended' --background '#FFF0' --pad-horiz 0 --pad-vert 0 --no-window-controls
+    --[[
+        silicon --theme 'Monokai Extended' --background '#FFF0' --font 'Hack;PingFang SC' \
+            --pad-horiz 0 --pad-vert 0 --no-window-controls
+    --]]
     vim.g.silicon = {
         theme               = 'Monokai Extended',
         background          = '#FFF0',
+        font                = 'Hack;PingFang SC',
         ['pad-horiz']       = 0,
         ['pad-vert']        = 0,
         ['window-controls'] = false
