@@ -72,4 +72,5 @@ require('packer').startup(function()
     use 'azabiong/vim-highlighter'
     use { 'junegunn/vim-easy-align', config = key_bindings.setup_vim_easy_align_keymaps }
     use { 'mattn/emmet-vim', ft = { 'html', 'xml' } }
+    use { 'segeljakt/vim-silicon', config = settings.setup_vim_silicon }
 end)

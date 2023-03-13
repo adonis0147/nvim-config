@@ -311,6 +311,17 @@ local function setup_nvim_osc52()
     }
 end
 
+local function setup_vim_silicon()
+    -- silicon --theme 'Monokai Extended' --background '#FFF0' --pad-horiz 0 --pad-vert 0 --no-window-controls
+    vim.g.silicon = {
+        theme               = 'Monokai Extended',
+        background          = '#FFF0',
+        ['pad-horiz']       = 0,
+        ['pad-vert']        = 0,
+        ['window-controls'] = false
+    }
+end
+
 return {
     setup_monokai_nvim           = setup_monokai_nvim,
     setup_lualine_nvim           = setup_lualine_nvim,
@@ -331,4 +342,5 @@ return {
     setup_qf_nvim                = setup_qf_nvim,
     setup_nvim_colorizer_lua     = setup_nvim_colorizer_lua,
     setup_diffview_nvim          = setup_diffview_nvim,
+    setup_vim_silicon            = setup_vim_silicon,
 }
