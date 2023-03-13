@@ -93,6 +93,14 @@ local function setup_mason()
             -- Enhance the default opts with the server-specific ones
             enhance_server_opts[server](opts)
         end
+
+        local ok, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
+        if ok then
+            if custom_settings.opts[server] then
+                custom_settings.opts[server](opts)
+            end
+        end
+
         lspconfig[server].setup(opts)
     end
 end
