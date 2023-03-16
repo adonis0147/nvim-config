@@ -33,16 +33,6 @@ function log_error() {
 	exit 1
 }
 
-function install_packer() {
-	log_info 'Installing packer.nvim...'
-	local install_path="${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim"
-	if [[ ! -d "${install_path}" ]]; then
-		git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-			~/.local/share/nvim/site/pack/packer/start/packer.nvim
-	fi
-	log_info 'Success!'
-}
-
 function install_nvim_config() {
 	log_info 'Installing nvim configuration...'
 	local install_path="${HOME}/.config/nvim"
@@ -57,16 +47,8 @@ function install_nvim_config() {
 	log_info 'Success!'
 }
 
-function install_packages() {
-	log_info 'Installing packages...'
-	nvim -c 'autocmd! User PackerCompileDone :qa' -c ':PackerSync'
-	log_info 'Success!'
-}
-
 function setup() {
-	install_packer
 	install_nvim_config
-	install_packages
 	log_info 'Completed!'
 }
 

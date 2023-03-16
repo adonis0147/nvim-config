@@ -15,7 +15,16 @@ local function setup_lualine_nvim()
             theme = 'powerline',
             component_separators = {},
             section_separators = {},
-        }
+        },
+        sections = {
+            lualine_x = {
+                {
+                    require("lazy.status").updates,
+                    cond = require("lazy.status").has_updates,
+                    color = { fg = "#ff9e64" },
+                },
+            },
+        },
     }
 end
 
@@ -99,8 +108,8 @@ local function setup_telescope_nvim()
         defaults = {
             mappings = {
                 i = {
-                        ['<c-j>'] = actions.move_selection_next,
-                        ['<c-k>'] = actions.move_selection_previous,
+                    ['<c-j>'] = actions.move_selection_next,
+                    ['<c-k>'] = actions.move_selection_previous,
                 }
             }
         },
@@ -114,20 +123,18 @@ local function setup_telescope_nvim()
             live_grep_args = {
                 mappings = {
                     i = {
-                            ['<C-j>'] = actions.move_selection_next,
-                            ['<C-k>'] = actions.move_selection_previous,
+                        ['<C-j>'] = actions.move_selection_next,
+                        ['<C-k>'] = actions.move_selection_previous,
                     }
                 }
             }
         }
     }
 
-    vim.cmd('PackerLoad telescope-fzf-native.nvim')
     telescope.load_extension('fzf')
 
     vim.cmd('autocmd User TelescopePreviewerLoaded setlocal wrap')
 
-    vim.cmd('PackerLoad telescope-live-grep-args.nvim')
     require('plugins.key_bindings').setup_telescope_nvim_keymaps()
 end
 
@@ -141,8 +148,6 @@ end
 
 local function setup_nvim_cmp()
     vim.opt.completeopt = 'menu,menuone,noselect'
-
-    vim.cmd('PackerLoad LuaSnip')
 
     local luasnip = require('luasnip')
     local cmp = require('cmp')
@@ -181,14 +186,14 @@ local function setup_nvim_cmp()
             end,
         },
         mapping = cmp.mapping.preset.insert({
-                ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-                ['<c-f>'] = cmp.mapping.scroll_docs(4),
-                ['<c-e>'] = cmp.mapping.abort(),
-                ['<cr>'] = cmp.mapping.confirm({ select = true }),
-                ['<tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-                ['<s-tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
-                ['<c-l>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-                ['<c-h>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+            ['<c-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<c-f>'] = cmp.mapping.scroll_docs(4),
+            ['<c-e>'] = cmp.mapping.abort(),
+            ['<cr>'] = cmp.mapping.confirm({ select = true }),
+            ['<tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+            ['<s-tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+            ['<c-l>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+            ['<c-h>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
             { name = 'luasnip' },
@@ -216,7 +221,6 @@ local function setup_nvim_cmp()
     })
 
     -- Load snippets
-    vim.cmd('PackerLoad friendly-snippets')
     require('luasnip.loaders.from_vscode').load()
 end
 
@@ -301,12 +305,12 @@ local function setup_nvim_osc52()
     vim.g.clipboard = {
         name = 'osc52',
         copy = {
-                ['+'] = copy,
-                ['*'] = copy
+            ['+'] = copy,
+            ['*'] = copy
         },
         paste = {
-                ['+'] = paste,
-                ['*'] = paste
+            ['+'] = paste,
+            ['*'] = paste
         }
     }
 end
