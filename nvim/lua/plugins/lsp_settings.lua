@@ -46,6 +46,26 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local function get_all_lsp_servers()
+    local servers = {}
+
+    local installed_servers = require('mason-lspconfig').get_installed_servers()
+    for _, server in ipairs(installed_servers) do
+        servers[server] = true
+    end
+
+    local has_custom_settings, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
+    if has_custom_settings then
+        for server, _ in pairs(custom_settings.opts) do
+            if not servers[server] then
+                servers[server] = true
+            end
+        end
+    end
+
+    return servers
+end
+
 local function setup_mason()
     require("mason").setup {}
     require("mason-lspconfig").setup {}
@@ -81,8 +101,10 @@ local function setup_mason()
     }
 
     local lspconfig = require('lspconfig')
-    local servers = require('mason-lspconfig').get_installed_servers()
-    for _, server in pairs(servers) do
+    local has_custom_settings, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
+
+    local servers = get_all_lsp_servers()
+    for server, _ in pairs(servers) do
         -- Specify the default options which we'll use to setup all servers
         local opts = {
             on_attach = on_attach,
@@ -94,8 +116,7 @@ local function setup_mason()
             enhance_server_opts[server](opts)
         end
 
-        local ok, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
-        if ok then
+        if has_custom_settings then
             if custom_settings.opts[server] then
                 custom_settings.opts[server](opts)
             end
