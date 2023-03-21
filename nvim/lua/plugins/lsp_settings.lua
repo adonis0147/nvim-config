@@ -98,6 +98,17 @@ local function setup_mason()
                 '--query-driver=/usr/bin/*',
             }
         end,
+        ['pylsp'] = function(opts)
+            opts.settings = {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            maxLineLength = 120
+                        }
+                    }
+                }
+            }
+        end
     }
 
     local lspconfig = require('lspconfig')
