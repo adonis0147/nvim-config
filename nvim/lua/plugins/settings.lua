@@ -80,6 +80,7 @@ end
 
 local function setup_ultimate_autopair_nvim()
     require('ultimate-autopair').setup {
+        cmap = false,
         cr = {
             addsemi = {},
         },
