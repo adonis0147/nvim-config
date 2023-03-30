@@ -19,9 +19,9 @@ local function setup_lualine_nvim()
         sections = {
             lualine_x = {
                 {
-                    require("lazy.status").updates,
-                    cond = require("lazy.status").has_updates,
-                    color = { fg = "#ff9e64" },
+                    require('lazy.status').updates,
+                    cond = require('lazy.status').has_updates,
+                    color = { fg = '#ff9e64' },
                 },
             },
         },
@@ -241,7 +241,7 @@ local function setup_nvim_treesitter()
             enable = true
         }
     }
-    require("nvim-treesitter.install").prefer_git = true
+    require('nvim-treesitter.install').prefer_git = true
 end
 
 local function setup_spellsitter_nvim()
@@ -271,20 +271,37 @@ local function setup_nvim_colorizer_lua()
 end
 
 local function setup_diffview_nvim()
-    require("diffview").setup {
+    local actions = require('diffview.actions')
+
+    require('diffview').setup {
         use_icons = false,
         view = {
             merge_tool = {
-                layout = "diff4_mixed",
+                layout = 'diff4_mixed',
             },
         },
         hooks = {
             view_opened = function(_)
-                local plugin = packer_plugins['focus.nvim']
-                if plugin and plugin.loaded then
-                    require('focus').focus_disable()
-                end
+                require('focus').focus_disable()
             end
+        },
+        keymaps = {
+            diff4 = {
+                {
+                    {
+                        'n', 'x'
+                    },
+                    '1do', actions.diffget('ours'),
+                    { desc = 'Obtain the diff hunk from the OURS version of the file' }
+                },
+                {
+                    {
+                        'n', 'x'
+                    },
+                    '2do', actions.diffget('base'),
+                    { desc = 'Obtain the diff hunk from the BASE version of the file' }
+                },
+            },
         }
     }
 end
