@@ -84,9 +84,6 @@ local function setup_ultimate_autopair_nvim()
         cr = {
             addsemi = {},
         },
-        extensions = {
-            { 'suround', {} },
-        },
     }
 end
 
