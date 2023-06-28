@@ -85,7 +85,6 @@ require('lazy').setup {
     { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim },
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
     { 'ojroques/nvim-osc52',             config = settings.setup_nvim_osc52 },
-    { 'lewis6991/spellsitter.nvim',      config = settings.setup_spellsitter_nvim },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
     { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua, ft = { 'yaml' } },
     { 'sindrets/diffview.nvim',          config = settings.setup_diffview_nvim },

@@ -241,10 +241,6 @@ local function setup_nvim_treesitter()
     require('nvim-treesitter.install').prefer_git = true
 end
 
-local function setup_spellsitter_nvim()
-    require('spellsitter').setup {}
-end
-
 local function setup_null_ls_nvim()
     require('plugins.lsp_settings').setup_null_ls_nvim()
 end
@@ -361,7 +357,6 @@ return {
     setup_null_ls_nvim           = setup_null_ls_nvim,
     setup_nvim_treesitter        = setup_nvim_treesitter,
     setup_nvim_osc52             = setup_nvim_osc52,
-    setup_spellsitter_nvim       = setup_spellsitter_nvim,
     setup_qf_nvim                = setup_qf_nvim,
     setup_nvim_colorizer_lua     = setup_nvim_colorizer_lua,
     setup_diffview_nvim          = setup_diffview_nvim,
