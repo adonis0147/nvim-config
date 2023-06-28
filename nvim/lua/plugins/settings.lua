@@ -247,6 +247,7 @@ end
 
 local function setup_qf_nvim()
     require('qf').setup {
+        pretty = false,
         l = {
             max_height = 10,
             auto_resize = false,
