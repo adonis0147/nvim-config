@@ -341,6 +341,10 @@ local function setup_vim_silicon()
     }
 end
 
+local function setup_lessspace_vim()
+    vim.g.lessspace_blacklist = { 'diff', 'markdown' }
+end
+
 return {
     setup_monokai_nvim           = setup_monokai_nvim,
     setup_lualine_nvim           = setup_lualine_nvim,
@@ -361,4 +365,5 @@ return {
     setup_nvim_colorizer_lua     = setup_nvim_colorizer_lua,
     setup_diffview_nvim          = setup_diffview_nvim,
     setup_vim_silicon            = setup_vim_silicon,
+    setup_lessspace_vim          = setup_lessspace_vim,
 }
