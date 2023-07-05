@@ -78,13 +78,27 @@ local function setup_hop_nvim()
     require('plugins.key_bindings').setup_hop_nvim_keymaps()
 end
 
-local function setup_ultimate_autopair_nvim()
-    require('ultimate-autopair').setup {
-        cmap = false,
-        cr = {
-            addsemi = {},
-        },
+local function setup_nvim_autopairs()
+    local npairs = require('nvim-autopairs')
+    npairs.setup {
+        check_ts = true,
+        enable_afterquote = false,
     }
+
+    local cond = require('nvim-autopairs.conds')
+    local ts_conds = require('nvim-autopairs.ts-conds')
+    local quote = require('nvim-autopairs.rules.basic').quote_creator(npairs.config)
+
+    npairs.remove_rule('"')
+    npairs.add_rule(quote('"', '"', { '-vim', '-sh', '-zsh' }))
+    npairs.add_rule(quote('"', '"', 'vim'):with_pair(cond.not_before_regex('^%s*$', -1)))
+    npairs.add_rule(quote('"', '"', { 'sh', 'zsh' }):with_pair(function(opts)
+        if require('nvim-treesitter.parsers').has_parser() then
+            return ts_conds.is_not_ts_node({ 'string', 'comment' })(opts)
+        else
+            return cond.not_add_quote_inside_quote()(opts)
+        end
+    end))
 end
 
 local function setup_kommentary()
@@ -346,24 +360,24 @@ local function setup_lessspace_vim()
 end
 
 return {
-    setup_monokai_nvim           = setup_monokai_nvim,
-    setup_lualine_nvim           = setup_lualine_nvim,
-    setup_nvim_bufferline        = setup_nvim_bufferline,
-    setup_close_buffers_nvim     = setup_close_buffers_nvim,
-    setup_hop_nvim               = setup_hop_nvim,
-    setup_ultimate_autopair_nvim = setup_ultimate_autopair_nvim,
-    setup_kommentary             = setup_kommentary,
-    setup_focus_nvim             = setup_focus_nvim,
-    setup_telescope_nvim         = setup_telescope_nvim,
-    setup_project_nvim           = setup_project_nvim,
-    setup_nvim_cmp               = setup_nvim_cmp,
-    setup_lsp                    = setup_lsp,
-    setup_null_ls_nvim           = setup_null_ls_nvim,
-    setup_nvim_treesitter        = setup_nvim_treesitter,
-    setup_nvim_osc52             = setup_nvim_osc52,
-    setup_qf_nvim                = setup_qf_nvim,
-    setup_nvim_colorizer_lua     = setup_nvim_colorizer_lua,
-    setup_diffview_nvim          = setup_diffview_nvim,
-    setup_vim_silicon            = setup_vim_silicon,
-    setup_lessspace_vim          = setup_lessspace_vim,
+    setup_monokai_nvim       = setup_monokai_nvim,
+    setup_lualine_nvim       = setup_lualine_nvim,
+    setup_nvim_bufferline    = setup_nvim_bufferline,
+    setup_close_buffers_nvim = setup_close_buffers_nvim,
+    setup_hop_nvim           = setup_hop_nvim,
+    setup_nvim_autopairs     = setup_nvim_autopairs,
+    setup_kommentary         = setup_kommentary,
+    setup_focus_nvim         = setup_focus_nvim,
+    setup_telescope_nvim     = setup_telescope_nvim,
+    setup_project_nvim       = setup_project_nvim,
+    setup_nvim_cmp           = setup_nvim_cmp,
+    setup_lsp                = setup_lsp,
+    setup_null_ls_nvim       = setup_null_ls_nvim,
+    setup_nvim_treesitter    = setup_nvim_treesitter,
+    setup_nvim_osc52         = setup_nvim_osc52,
+    setup_qf_nvim            = setup_qf_nvim,
+    setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
+    setup_diffview_nvim      = setup_diffview_nvim,
+    setup_vim_silicon        = setup_vim_silicon,
+    setup_lessspace_vim      = setup_lessspace_vim,
 }

@@ -36,9 +36,9 @@ require('lazy').setup {
         dependencies = { 'tanvirtin/monokai.nvim' }
     },
     {
-        'altermo/ultimate-autopair.nvim',
-        config = settings.setup_ultimate_autopair_nvim,
-        event = { 'InsertEnter', 'CmdlineEnter' }
+        'windwp/nvim-autopairs',
+        config = settings.setup_nvim_autopairs,
+        event = "InsertEnter"
     },
     {
         'b3nj5m1n/kommentary',
