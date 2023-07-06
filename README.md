@@ -44,6 +44,6 @@ See [nvim/lua/key_bindings.lua](https://github.com/adonis0147/nvim-config/blob/m
 
 ## Plugins Management
 
-Use [packer.nvim](https://github.com/wbthomason/packer.nvim) to manage plugins.
+Use [lazy.nvim](https://github.com/folke/lazy.nvim) to manage plugins.
 
 See [nvim/lua/plugins/plugins.lua](https://github.com/adonis0147/nvim-config/blob/main/nvim/lua/plugins/plugins.lua).
