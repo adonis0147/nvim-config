@@ -106,5 +106,6 @@ require('lazy').setup {
             { 'theHamsta/nvim-dap-virtual-text', config = settings.setup_nvim_dap_virtual_text }
         },
         config = settings.setup_dap
-    }
+    },
+    { 'LiadOz/nvim-dap-repl-highlights', config = true },
 }
