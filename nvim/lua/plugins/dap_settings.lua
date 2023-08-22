@@ -1,3 +1,19 @@
+local function setup_dap_key_bindings()
+    vim.keymap.set('n', '<m-k>', function() require('dap').continue() end)
+    vim.keymap.set('n', '<m-j>', function() require('dap').step_over() end)
+    vim.keymap.set('n', '<m-l>', function() require('dap').step_into() end)
+    vim.keymap.set('n', '<m-h>', function() require('dap').step_out() end)
+    vim.keymap.set('n', '<m-b>', function() require('dap').toggle_breakpoint() end)
+    vim.keymap.set('n', '<m-B>', function() require('dap').set_breakpoint() end)
+    vim.keymap.set('n', '<m-p>',
+        function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+    vim.keymap.set('n', '<m-c>',
+        function() require('dap').set_breakpoint(vim.fn.input('Condition: '), nil, nil) end)
+    vim.keymap.set('n', '<m-d>', function() require('dapui').eval() end)
+    vim.keymap.set('n', '<m-f>',
+        function() require('dapui').eval(vim.fn.input('Expression: '), { context = 'repl' }) end)
+end
+
 local function setup_dap()
     local dap, dapui = require("dap"), require("dapui")
 
@@ -40,6 +56,8 @@ local function setup_dap()
         },
     }
     dap.configurations.c = dap.configurations.cpp
+
+    setup_dap_key_bindings()
 end
 
 local function setup_nvim_dap_ui()
