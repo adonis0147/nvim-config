@@ -83,6 +83,7 @@ local function setup_nvim_autopairs()
     npairs.setup {
         check_ts = true,
         enable_afterquote = false,
+        disable_filetype = { 'TelescopePrompt', 'spectre_panel', 'dap-repl' },
     }
 
     local cond = require('nvim-autopairs.conds')
@@ -359,25 +360,40 @@ local function setup_lessspace_vim()
     vim.g.lessspace_blacklist = { 'diff', 'markdown' }
 end
 
+local function setup_dap()
+    require('plugins.dap_settings').setup_dap()
+end
+
+local function setup_nvim_dap_ui()
+    require('plugins.dap_settings').setup_nvim_dap_ui()
+end
+
+local function setup_nvim_dap_virtual_text()
+    require('plugins.dap_settings').setup_nvim_dap_virtual_text()
+end
+
 return {
-    setup_monokai_nvim       = setup_monokai_nvim,
-    setup_lualine_nvim       = setup_lualine_nvim,
-    setup_nvim_bufferline    = setup_nvim_bufferline,
-    setup_close_buffers_nvim = setup_close_buffers_nvim,
-    setup_hop_nvim           = setup_hop_nvim,
-    setup_nvim_autopairs     = setup_nvim_autopairs,
-    setup_kommentary         = setup_kommentary,
-    setup_focus_nvim         = setup_focus_nvim,
-    setup_telescope_nvim     = setup_telescope_nvim,
-    setup_project_nvim       = setup_project_nvim,
-    setup_nvim_cmp           = setup_nvim_cmp,
-    setup_lsp                = setup_lsp,
-    setup_null_ls_nvim       = setup_null_ls_nvim,
-    setup_nvim_treesitter    = setup_nvim_treesitter,
-    setup_nvim_osc52         = setup_nvim_osc52,
-    setup_qf_nvim            = setup_qf_nvim,
-    setup_nvim_colorizer_lua = setup_nvim_colorizer_lua,
-    setup_diffview_nvim      = setup_diffview_nvim,
-    setup_vim_silicon        = setup_vim_silicon,
-    setup_lessspace_vim      = setup_lessspace_vim,
+    setup_monokai_nvim          = setup_monokai_nvim,
+    setup_lualine_nvim          = setup_lualine_nvim,
+    setup_nvim_bufferline       = setup_nvim_bufferline,
+    setup_close_buffers_nvim    = setup_close_buffers_nvim,
+    setup_hop_nvim              = setup_hop_nvim,
+    setup_nvim_autopairs        = setup_nvim_autopairs,
+    setup_kommentary            = setup_kommentary,
+    setup_focus_nvim            = setup_focus_nvim,
+    setup_telescope_nvim        = setup_telescope_nvim,
+    setup_project_nvim          = setup_project_nvim,
+    setup_nvim_cmp              = setup_nvim_cmp,
+    setup_lsp                   = setup_lsp,
+    setup_null_ls_nvim          = setup_null_ls_nvim,
+    setup_nvim_treesitter       = setup_nvim_treesitter,
+    setup_nvim_osc52            = setup_nvim_osc52,
+    setup_qf_nvim               = setup_qf_nvim,
+    setup_nvim_colorizer_lua    = setup_nvim_colorizer_lua,
+    setup_diffview_nvim         = setup_diffview_nvim,
+    setup_vim_silicon           = setup_vim_silicon,
+    setup_lessspace_vim         = setup_lessspace_vim,
+    setup_dap                   = setup_dap,
+    setup_nvim_dap_ui           = setup_nvim_dap_ui,
+    setup_nvim_dap_virtual_text = setup_nvim_dap_virtual_text,
 }

@@ -46,7 +46,7 @@ require('lazy').setup {
         keys = { { '<leader>cc', mode = { 'n', 'x' } } }
     },
     {
-        'beauwilliams/focus.nvim',
+        'nvim-focus/focus.nvim',
         config = settings.setup_focus_nvim,
         cond = 'not vim.o.diff',
         event = 'BufNew'
@@ -95,4 +95,16 @@ require('lazy').setup {
     { 'mattn/emmet-vim',                ft = { 'html', 'xml' } },
     { 'segeljakt/vim-silicon',          config = settings.setup_vim_silicon },
     { 'thirtythreeforty/lessspace.vim', config = settings.setup_lessspace_vim },
+    {
+        'mfussenegger/nvim-dap',
+        dependencies = {
+            {
+                'rcarriga/nvim-dap-ui',
+                dependencies = { 'tanvirtin/monokai.nvim' },
+                config = settings.setup_nvim_dap_ui
+            },
+            { 'theHamsta/nvim-dap-virtual-text', config = settings.setup_nvim_dap_virtual_text }
+        },
+        config = settings.setup_dap
+    }
 }
