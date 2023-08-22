@@ -57,6 +57,33 @@ local function setup_dap()
     }
     dap.configurations.c = dap.configurations.cpp
 
+    dap.adapters.bashdb = {
+        type = 'executable',
+        command = 'bash-debug-adapter',
+        name = 'bashdb',
+    }
+    dap.configurations.sh = {
+        {
+            type = 'bashdb',
+            request = 'launch',
+            name = "Launch file",
+            showDebugOutput = true,
+            pathBashdb = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+            pathBashdbLib = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+            trace = true,
+            file = "${file}",
+            program = "${file}",
+            cwd = '${workspaceFolder}',
+            pathCat = "cat",
+            pathBash = "bash",
+            pathMkfifo = "mkfifo",
+            pathPkill = "pkill",
+            args = {},
+            env = {},
+            terminalKind = "integrated",
+        }
+    }
+
     setup_dap_key_bindings()
 end
 
