@@ -79,6 +79,7 @@ local function setup_dap()
             pathMkfifo = "mkfifo",
             pathPkill = "pkill",
             args = {},
+            argsString = '',
             env = {},
             terminalKind = "integrated",
         }
