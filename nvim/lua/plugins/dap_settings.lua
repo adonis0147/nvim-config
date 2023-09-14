@@ -136,6 +136,11 @@ local function setup_dap()
     }
 
     setup_dap_key_bindings()
+
+    require('dap.ext.vscode').load_launchjs(vim.fn.getcwd() .. '/.dap-launch.json', {
+        ['lldb'] = { 'cpp', 'c' },
+        ['bashdb'] = { 'sh' }
+    })
 end
 
 local function setup_nvim_dap_ui()
