@@ -26,7 +26,7 @@ local function on_attach(client, bufnr)
     vim.keymap.set('n', '<space>ds', vim.lsp.buf.document_symbol, keymap_opts)
     vim.keymap.set('n', '<space>ci', vim.lsp.buf.incoming_calls, keymap_opts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, keymap_opts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format({async = true}) end, keymap_opts)
+    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format({ async = true }) end, keymap_opts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, keymap_opts)
     vim.keymap.set('n', '<space>sh', vim.lsp.buf.signature_help, keymap_opts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, keymap_opts)
@@ -46,7 +46,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local function get_all_lsp_servers()
+local function get_all_lsp_servers(lsp_server_settings)
     local servers = {}
 
     local installed_servers = require('mason-lspconfig').get_installed_servers()
@@ -54,10 +54,18 @@ local function get_all_lsp_servers()
         servers[server] = true
     end
 
+    if lsp_server_settings ~= nil then
+        for server, _ in pairs(lsp_server_settings) do
+            if vim.fn.executable(server) == 1 then
+                servers[server] = true
+            end
+        end
+    end
+
     local has_custom_settings, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
     if has_custom_settings then
         for server, _ in pairs(custom_settings.opts) do
-            if not servers[server] then
+            if vim.fn.executable(server) == 1 then
                 servers[server] = true
             end
         end
@@ -114,7 +122,7 @@ local function setup_mason()
     local lspconfig = require('lspconfig')
     local has_custom_settings, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
 
-    local servers = get_all_lsp_servers()
+    local servers = get_all_lsp_servers(enhance_server_opts)
     for server, _ in pairs(servers) do
         -- Specify the default options which we'll use to setup all servers
         local opts = {
