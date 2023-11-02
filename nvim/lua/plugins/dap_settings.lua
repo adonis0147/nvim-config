@@ -78,7 +78,7 @@ local function setup_dap()
             pathBash = "bash",
             pathMkfifo = "mkfifo",
             pathPkill = "pkill",
-            args = {},
+            args = {}, -- Prefer this to argsString
             argsString = '',
             env = {},
             terminalKind = "integrated",
