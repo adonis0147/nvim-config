@@ -41,15 +41,27 @@ vim.cmd('autocmd FileType c,cpp nmap <F5> :w<cr>:terminal make<cr>')
 vim.cmd('autocmd FileType c,cpp imap <F5> <esc>:w<cr>:terminal make<cr>')
 
 -- Build and run
-vim.cmd('autocmd FileType c nmap <F9> :w<cr>:terminal gcc -g % -o %< && ./%< <cr>')
-vim.cmd('autocmd FileType c imap <F9> <esc>:w<cr>:terminal gcc -g % -o %< && ./%< <cr>')
-vim.cmd('autocmd FileType cpp nmap <F9> :w<cr>:terminal g++ -g -std=c++20 % -o %< && ./%< <cr>')
-vim.cmd('autocmd FileType cpp imap <F9> <esc>:w<cr>:terminal g++ -g -std=c++20 % -o %< && ./%< <cr>')
-vim.cmd('autocmd FileType go nmap <F9> :w<cr>:terminal go run %<cr>')
-vim.cmd('autocmd FileType go imap <F9> <esc>:w<cr>:terminal go run %<cr>')
-vim.cmd('autocmd FileType python nmap <F9> :w<cr>:terminal python3 %<cr>')
-vim.cmd('autocmd FileType python imap <F9> <esc>:w<cr>:terminal python3 %<cr>')
-vim.cmd('autocmd FileType ruby nmap <F9> :w<cr>:terminal ruby %<cr>')
-vim.cmd('autocmd FileType ruby imap <F9> <esc>:w<cr>:terminal ruby %<cr>')
-vim.cmd('autocmd FileType sh nmap <F9> :w<cr>:terminal bash %<cr>')
-vim.cmd('autocmd FileType sh imap <F9> <esc>:w<cr>:terminal bash %<cr>')
+local function save_and_run_cmd(cmd)
+    local cmd_string = '<esc>:w<cr>'
+    return cmd_string .. ':terminal ' .. cmd .. ' <cr>'
+end
+
+local cc = 'gcc'
+local cxx = 'g++'
+if vim.fn.has('macunix') == 1 then
+    cc = 'clang'
+    cxx = 'clang++'
+end
+
+vim.cmd('autocmd FileType c nmap <F9> ' .. save_and_run_cmd(cc .. ' -g % -o %< && ./%<'))
+vim.cmd('autocmd FileType c imap <F9> ' .. save_and_run_cmd(cc .. ' -g % -o %< && ./%<'))
+vim.cmd('autocmd FileType cpp nmap <F9> ' .. save_and_run_cmd(cxx .. ' -g -std=c++20 % -o %< && ./%<'))
+vim.cmd('autocmd FileType cpp imap <F9> ' .. save_and_run_cmd(cxx .. ' -g -std=c++20 % -o %< && ./%<'))
+vim.cmd('autocmd FileType go nmap <F9> ' .. save_and_run_cmd('go run %'))
+vim.cmd('autocmd FileType go imap <F9> ' .. save_and_run_cmd('go run %'))
+vim.cmd('autocmd FileType python nmap <F9> ' .. save_and_run_cmd('python3 %'))
+vim.cmd('autocmd FileType python imap <F9> ' .. save_and_run_cmd('python3 %'))
+vim.cmd('autocmd FileType ruby nmap <F9> ' .. save_and_run_cmd('ruby %'))
+vim.cmd('autocmd FileType ruby imap <F9> ' .. save_and_run_cmd('ruby %'))
+vim.cmd('autocmd FileType sh nmap <F9> ' .. save_and_run_cmd('bash %'))
+vim.cmd('autocmd FileType sh imap <F9> ' .. save_and_run_cmd('bash %'))
