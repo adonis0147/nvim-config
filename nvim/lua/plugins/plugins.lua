@@ -28,7 +28,7 @@ require('lazy').setup {
         config = settings.setup_lualine_nvim,
         event = 'BufEnter'
     },
-    { 'noib3/nvim-bufferline',      config = settings.setup_nvim_bufferline },
+    { 'willothy/nvim-cokeline',     config = settings.setup_nvim_cokeline },
     { 'kazhala/close-buffers.nvim', config = settings.setup_close_buffers_nvim },
     {
         'phaazon/hop.nvim',

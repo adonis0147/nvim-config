@@ -28,7 +28,7 @@ local function setup_lualine_nvim()
     }
 end
 
-local function setup_nvim_bufferline()
+local function setup_nvim_cokeline()
     local get_hex = require('cokeline.hlgroups').get_hl_attr
     require('cokeline').setup {
         show_if_buffers_are_at_least = 2,
@@ -375,7 +375,7 @@ end
 return {
     setup_monokai_nvim          = setup_monokai_nvim,
     setup_lualine_nvim          = setup_lualine_nvim,
-    setup_nvim_bufferline       = setup_nvim_bufferline,
+    setup_nvim_cokeline         = setup_nvim_cokeline,
     setup_close_buffers_nvim    = setup_close_buffers_nvim,
     setup_hop_nvim              = setup_hop_nvim,
     setup_nvim_autopairs        = setup_nvim_autopairs,
