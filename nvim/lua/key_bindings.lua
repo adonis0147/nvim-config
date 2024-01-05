@@ -53,10 +53,14 @@ if vim.fn.has('macunix') == 1 then
     cxx = 'clang++'
 end
 
-vim.cmd('autocmd FileType c nmap <F9> ' .. save_and_run_cmd(cc .. ' -g % -o %< && ./%<'))
-vim.cmd('autocmd FileType c imap <F9> ' .. save_and_run_cmd(cc .. ' -g % -o %< && ./%<'))
-vim.cmd('autocmd FileType cpp nmap <F9> ' .. save_and_run_cmd(cxx .. ' -g -std=c++20 % -o %< && ./%<'))
-vim.cmd('autocmd FileType cpp imap <F9> ' .. save_and_run_cmd(cxx .. ' -g -std=c++20 % -o %< && ./%<'))
+vim.cmd('autocmd FileType c nmap <F9> ' ..
+    save_and_run_cmd(cc .. ' -g % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
+vim.cmd('autocmd FileType c imap <F9> ' ..
+    save_and_run_cmd(cc .. ' -g % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
+vim.cmd('autocmd FileType cpp nmap <F9> ' ..
+    save_and_run_cmd(cxx .. ' -g -std=c++20 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
+vim.cmd('autocmd FileType cpp imap <F9> ' ..
+    save_and_run_cmd(cxx .. ' -g -std=c++20 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
 vim.cmd('autocmd FileType go nmap <F9> ' .. save_and_run_cmd('go run %'))
 vim.cmd('autocmd FileType go imap <F9> ' .. save_and_run_cmd('go run %'))
 vim.cmd('autocmd FileType python nmap <F9> ' .. save_and_run_cmd('python3 %'))
