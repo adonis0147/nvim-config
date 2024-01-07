@@ -86,7 +86,7 @@ require('lazy').setup {
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
     { 'ojroques/nvim-osc52',             config = settings.setup_nvim_osc52 },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
-    { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua, ft = { 'yaml' } },
+    { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua },
     { 'sindrets/diffview.nvim',          config = settings.setup_diffview_nvim },
     'tpope/vim-surround',
     'tpope/vim-repeat',
