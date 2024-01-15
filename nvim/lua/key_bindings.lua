@@ -36,15 +36,15 @@ vim.keymap.set('n', '<leader>s', require('functions').toggle_spell_checking, { n
 --                                  Autocmds                                  --
 --------------------------------------------------------------------------------
 
--- Make
-vim.cmd('autocmd FileType c,cpp nmap <F5> :w<cr>:terminal make<cr>')
-vim.cmd('autocmd FileType c,cpp imap <F5> <esc>:w<cr>:terminal make<cr>')
-
 -- Build and run
 local function save_and_run_cmd(cmd)
     local cmd_string = '<esc>:w<cr>'
     return cmd_string .. ':terminal ' .. cmd .. ' <cr>'
 end
+
+-- Make
+vim.cmd('autocmd FileType c,cpp nmap <F5> ' .. save_and_run_cmd('make'))
+vim.cmd('autocmd FileType c,cpp imap <F5> ' .. save_and_run_cmd('make'))
 
 local cc = 'gcc'
 local cxx = 'g++'
@@ -61,6 +61,8 @@ vim.cmd('autocmd FileType cpp nmap <F9> ' ..
     save_and_run_cmd(cxx .. ' -g -std=c++20 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
 vim.cmd('autocmd FileType cpp imap <F9> ' ..
     save_and_run_cmd(cxx .. ' -g -std=c++20 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
+vim.cmd('autocmd FileType rust nmap <F9> ' .. save_and_run_cmd('cargo run'))
+vim.cmd('autocmd FileType rust imap <F9> ' .. save_and_run_cmd('cargo run'))
 vim.cmd('autocmd FileType go nmap <F9> ' .. save_and_run_cmd('go run %'))
 vim.cmd('autocmd FileType go imap <F9> ' .. save_and_run_cmd('go run %'))
 vim.cmd('autocmd FileType python nmap <F9> ' .. save_and_run_cmd('python3 %'))
