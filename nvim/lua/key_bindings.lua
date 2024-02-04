@@ -58,9 +58,9 @@ vim.cmd('autocmd FileType c nmap <F9> ' ..
 vim.cmd('autocmd FileType c imap <F9> ' ..
     save_and_run_cmd(cc .. ' -g % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
 vim.cmd('autocmd FileType cpp nmap <F9> ' ..
-    save_and_run_cmd(cxx .. ' -g -std=c++20 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
+    save_and_run_cmd(cxx .. ' -g -std=c++23 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
 vim.cmd('autocmd FileType cpp imap <F9> ' ..
-    save_and_run_cmd(cxx .. ' -g -std=c++20 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
+    save_and_run_cmd(cxx .. ' -g -std=c++23 % -o $(dirname %:p)/%:t:r && $(dirname %:p)/%:t:r'))
 vim.cmd('autocmd FileType rust nmap <F9> ' .. save_and_run_cmd('cargo run'))
 vim.cmd('autocmd FileType rust imap <F9> ' .. save_and_run_cmd('cargo run'))
 vim.cmd('autocmd FileType go nmap <F9> ' .. save_and_run_cmd('go run %'))
