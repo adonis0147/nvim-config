@@ -156,6 +156,7 @@ local function setup_project_nvim()
         detection_methods = { 'pattern' },
         patterns = { '.git' },
         silent_chdir = true,
+        scope_chdir = 'tab',
     }
 end
 
