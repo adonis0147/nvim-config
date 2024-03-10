@@ -112,6 +112,37 @@ end
 
 local function setup_focus_nvim()
     require('focus').setup {}
+
+    local ignore_filetypes = { 'DiffviewFiles', 'Outline' }
+    local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
+
+    local augroup =
+        vim.api.nvim_create_augroup('FocusDisable', { clear = true })
+
+    vim.api.nvim_create_autocmd('WinEnter', {
+        group = augroup,
+        callback = function(_)
+            if vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
+            then
+                vim.w.focus_disable = true
+            else
+                vim.w.focus_disable = false
+            end
+        end,
+        desc = 'Disable focus autoresize for BufType',
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+        group = augroup,
+        callback = function(_)
+            if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+                vim.b.focus_disable = true
+            else
+                vim.b.focus_disable = false
+            end
+        end,
+        desc = 'Disable focus autoresize for FileType',
+    })
 end
 
 local function setup_telescope_nvim()
@@ -261,6 +292,10 @@ local function setup_null_ls_nvim()
     require('plugins.lsp_settings').setup_null_ls_nvim()
 end
 
+local function setup_outline_nvim()
+    require("outline").setup {}
+end
+
 local function setup_qf_nvim()
     require('qf').setup {
         l = {
@@ -288,11 +323,6 @@ local function setup_diffview_nvim()
             merge_tool = {
                 layout = 'diff4_mixed',
             },
-        },
-        hooks = {
-            view_opened = function(_)
-                require('focus').focus_disable()
-            end
         },
         keymaps = {
             diff4 = {
@@ -387,6 +417,7 @@ return {
     setup_nvim_cmp              = setup_nvim_cmp,
     setup_lsp                   = setup_lsp,
     setup_null_ls_nvim          = setup_null_ls_nvim,
+    setup_outline_nvim          = setup_outline_nvim,
     setup_nvim_treesitter       = setup_nvim_treesitter,
     setup_nvim_osc52            = setup_nvim_osc52,
     setup_qf_nvim               = setup_qf_nvim,

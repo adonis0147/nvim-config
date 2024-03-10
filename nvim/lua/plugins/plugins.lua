@@ -83,6 +83,13 @@ require('lazy').setup {
         config = settings.setup_lsp,
     },
     { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim },
+    { 'hedyhli/outline.nvim',
+        cmd = { "Outline", "OutlineOpen" },
+        keys = {
+            { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+        },
+        config = settings.setup_outline_nvim
+    },
     {
         'mrcjkb/rustaceanvim',
         version = '^3', -- Recommended
