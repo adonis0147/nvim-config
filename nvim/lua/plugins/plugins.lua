@@ -56,9 +56,10 @@ require('lazy').setup {
         dependencies = {
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             'nvim-telescope/telescope-live-grep-args.nvim',
+            { 'stevearc/aerial.nvim',                     config = settings.setup_aerial_nvim },
         },
         config = settings.setup_telescope_nvim,
-        keys = { '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh', '<leader>fw' },
+        keys = { '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh', '<leader>fw', '<leader>fa' },
     },
     { 'ahmedkhalf/project.nvim',         config = settings.setup_project_nvim },
     {
@@ -89,7 +90,6 @@ require('lazy').setup {
         ft = { 'rust' },
     },
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
-    { 'stevearc/aerial.nvim',            config = settings.setup_aerial_nvim },
     { 'ojroques/nvim-osc52',             config = settings.setup_nvim_osc52 },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
     { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua },

@@ -171,11 +171,12 @@ local function setup_telescope_nvim()
                         ['<C-k>'] = actions.move_selection_previous,
                     }
                 }
-            }
+            },
         }
     }
 
     telescope.load_extension('fzf')
+    telescope.load_extension('aerial')
 
     vim.cmd('autocmd User TelescopePreviewerLoaded setlocal wrap')
 
