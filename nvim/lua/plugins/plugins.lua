@@ -83,19 +83,13 @@ require('lazy').setup {
         config = settings.setup_lsp,
     },
     { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim },
-    { 'hedyhli/outline.nvim',
-        cmd = { "Outline", "OutlineOpen" },
-        keys = {
-            { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
-        },
-        config = settings.setup_outline_nvim
-    },
     {
         'mrcjkb/rustaceanvim',
         version = '^3', -- Recommended
         ft = { 'rust' },
     },
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
+    { 'stevearc/aerial.nvim',            config = settings.setup_aerial_nvim },
     { 'ojroques/nvim-osc52',             config = settings.setup_nvim_osc52 },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
     { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua },

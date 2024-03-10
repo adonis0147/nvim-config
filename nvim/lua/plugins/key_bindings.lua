@@ -65,6 +65,10 @@ local function setup_vim_easy_align_keymaps()
     vim.keymap.set('n', 'ga', '<plug>(EasyAlign)', {})
 end
 
+local function setup_aerial_nvim_keymaps()
+    vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+end
+
 return {
     setup_nvim_bufferline_keymaps    = setup_nvim_bufferline_keymaps,
     setup_close_buffers_nvim_keymaps = setup_close_buffers_nvim_keymaps,
@@ -73,4 +77,5 @@ return {
     setup_telescope_nvim_keymaps     = setup_telescope_nvim_keymaps,
     setup_qf_nvim_keymaps            = setup_qf_nvim_keymaps,
     setup_vim_easy_align_keymaps     = setup_vim_easy_align_keymaps,
+    setup_aerial_nvim_keymaps        = setup_aerial_nvim_keymaps,
 }
