@@ -294,7 +294,13 @@ local function setup_null_ls_nvim()
 end
 
 local function setup_aerial_nvim()
-    require("aerial").setup {}
+    local aerial = require('aerial')
+    aerial.setup {
+        show_guides = true,
+        on_attach = function(bufnr)
+            aerial.tree_set_collapse_level(bufnr, 0)
+        end,
+    }
     require('plugins.key_bindings').setup_aerial_nvim_keymaps()
 end
 
