@@ -286,7 +286,6 @@ local function setup_nvim_treesitter()
             enable = true
         }
     }
-    require('nvim-treesitter.install').prefer_git = true
 end
 
 local function setup_null_ls_nvim()
