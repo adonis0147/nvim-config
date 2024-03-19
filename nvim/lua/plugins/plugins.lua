@@ -106,7 +106,7 @@ require('lazy').setup {
         dependencies = {
             {
                 'rcarriga/nvim-dap-ui',
-                dependencies = { 'tanvirtin/monokai.nvim' },
+                dependencies = { 'tanvirtin/monokai.nvim', 'nvim-neotest/nvim-nio' },
                 config = settings.setup_nvim_dap_ui
             },
             { 'theHamsta/nvim-dap-virtual-text', config = settings.setup_nvim_dap_virtual_text }
