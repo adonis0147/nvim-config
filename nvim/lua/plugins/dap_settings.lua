@@ -33,7 +33,7 @@ local function setup_dap()
     -- Configurations
     dap.adapters.lldb = {
         type = 'executable',
-        command = 'lldb-vscode', -- adjust as needed, must be absolute path
+        command = 'lldb-dap', -- adjust as needed, must be absolute path
         name = 'lldb',
     }
     dap.configurations.cpp = {
@@ -56,6 +56,42 @@ local function setup_dap()
         },
     }
     dap.configurations.c = dap.configurations.cpp
+    dap.configurations.rust = {
+        {
+            name = 'Launch',
+            type = 'lldb',
+            request = 'launch',
+            program = function()
+                return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end,
+            cwd = '${workspaceFolder}',
+            initCommands = function()
+                -- Find out where to look for the pretty printer Python module
+                local rustc_sysroot = vim.fn.trim(vim.fn.system('rustc --print sysroot'))
+
+                local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
+                local commands_file = rustc_sysroot .. '/lib/rustlib/etc/lldb_commands'
+
+                local commands = {}
+                local file = io.open(commands_file, 'r')
+                if file then
+                    for line in file:lines() do
+                        table.insert(commands, line)
+                    end
+                    file:close()
+                end
+                table.insert(commands, 1, script_import)
+
+                if vim.fn.filereadable(vim.fn.getcwd() .. '/.lldbinit') == 1 then
+                    table.insert(commands, 'command source ${workspaceFolder}/.lldbinit')
+                end
+
+                return commands
+            end,
+            stopOnEntry = false,
+            args = {},
+        },
+    }
 
     dap.adapters.bashdb = {
         type = 'executable',
@@ -139,7 +175,7 @@ local function setup_dap()
     setup_dap_key_bindings()
 
     require('dap.ext.vscode').load_launchjs(vim.fn.getcwd() .. '/.dap-launch.json', {
-        ['lldb'] = { 'cpp', 'c' },
+        ['lldb'] = { 'cpp', 'c', 'rust' },
         ['bashdb'] = { 'sh' }
     })
 end
