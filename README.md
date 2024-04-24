@@ -21,6 +21,7 @@ brew install neovim ripgrep
 ## Installation
 
 ```shell
+git clone https://github.com/adonis0147/nvim-config "${HOME}/.config/nvim-config"
 ./install.sh
 ```
 
