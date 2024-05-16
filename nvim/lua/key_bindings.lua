@@ -2,9 +2,6 @@
 --                                  Mappings                                  --
 --------------------------------------------------------------------------------
 
--- To toggle the paste mode
-vim.opt.pastetoggle = '<F2>'
-
 -- Use a space as the leader key
 vim.g.mapleader = ' '
 
