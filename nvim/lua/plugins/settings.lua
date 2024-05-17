@@ -368,10 +368,6 @@ local function setup_vim_silicon()
     }
 end
 
-local function setup_lessspace_vim()
-    vim.g.lessspace_blacklist = { 'diff', 'markdown' }
-end
-
 local function setup_dap()
     require('plugins.dap_settings').setup_dap()
 end
@@ -404,7 +400,6 @@ return {
     setup_diffview_nvim         = setup_diffview_nvim,
     setup_guess_indent_nvim     = setup_guess_indent_nvim,
     setup_vim_silicon           = setup_vim_silicon,
-    setup_lessspace_vim         = setup_lessspace_vim,
     setup_dap                   = setup_dap,
     setup_nvim_dap_ui           = setup_nvim_dap_ui,
     setup_nvim_dap_virtual_text = setup_nvim_dap_virtual_text,

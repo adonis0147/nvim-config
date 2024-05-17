@@ -88,10 +88,10 @@ require('lazy').setup {
     'tpope/vim-surround',
     'tpope/vim-repeat',
     'azabiong/vim-highlighter',
-    { 'junegunn/vim-easy-align',        config = key_bindings.setup_vim_easy_align_keymaps },
-    { 'mattn/emmet-vim',                ft = { 'html', 'xml' } },
-    { 'segeljakt/vim-silicon',          config = settings.setup_vim_silicon },
-    { 'thirtythreeforty/lessspace.vim', config = settings.setup_lessspace_vim },
+    { 'junegunn/vim-easy-align',             config = key_bindings.setup_vim_easy_align_keymaps },
+    { 'mattn/emmet-vim',                     ft = { 'html', 'xml' } },
+    { 'segeljakt/vim-silicon',               config = settings.setup_vim_silicon },
+    { 'axelf4/vim-strip-trailing-whitespace' },
     {
         'mfussenegger/nvim-dap',
         dependencies = {
