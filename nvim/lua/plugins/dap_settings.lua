@@ -31,26 +31,23 @@ local function setup_dap()
     end
 
     -- Configurations
-    dap.adapters.lldb = {
-        type = 'executable',
-        command = 'lldb-dap', -- adjust as needed, must be absolute path
-        name = 'lldb',
+    dap.adapters.codelldb = {
+        type = 'server',
+        port = "${port}",
+        executable = {
+            command = 'codelldb',
+            args = { "--port", "${port}" },
+        }
     }
     dap.configurations.cpp = {
         {
-            name = 'Launch',
-            type = 'lldb',
-            request = 'launch',
+            name = "Launch file",
+            type = "codelldb",
+            request = "launch",
             program = function()
                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
             end,
             cwd = '${workspaceFolder}',
-            initCommands = function()
-                if vim.fn.filereadable(vim.fn.getcwd() .. '/.lldbinit') == 1 then
-                    return { 'command source ${workspaceFolder}/.lldbinit' }
-                end
-                return {}
-            end,
             stopOnEntry = false,
             args = {},
         },
@@ -138,8 +135,8 @@ local function setup_dap()
 
     setup_dap_key_bindings()
 
-    require('dap.ext.vscode').load_launchjs(vim.fn.getcwd() .. '/.dap-launch.json', {
-        ['lldb'] = { 'cpp', 'c', 'rust' },
+    require('dap.ext.vscode').load_launchjs(nil, {
+        ['codelldb'] = { 'cpp', 'c', 'rust' },
         ['bashdb'] = { 'sh' }
     })
 end
