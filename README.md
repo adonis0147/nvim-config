@@ -1,7 +1,7 @@
 # nvim-config
 
 ## Dependencies
-1. [neovim](https://github.com/neovim/neovim) >= 0.8
+1. [neovim](https://github.com/neovim/neovim) >= 0.10.0
 2. [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ### Ubuntu

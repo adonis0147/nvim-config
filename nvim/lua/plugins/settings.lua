@@ -272,8 +272,8 @@ end
 
 local function setup_lsp()
     local lsp_settings = require('plugins.lsp_settings')
+    lsp_settings.setup_lsp_attach()
     lsp_settings.setup_mason()
-    lsp_settings.setup_diagnostic_keymaps()
 end
 
 local function setup_nvim_treesitter()

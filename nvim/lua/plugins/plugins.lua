@@ -84,11 +84,7 @@ require('lazy').setup {
         config = settings.setup_lsp,
     },
     { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim },
-    {
-        'mrcjkb/rustaceanvim',
-        version = '^3', -- Recommended
-        ft = { 'rust' },
-    },
+    { 'mrcjkb/rustaceanvim',             ft = { 'rust' } },
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
     { 'ojroques/nvim-osc52',             config = settings.setup_nvim_osc52 },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
