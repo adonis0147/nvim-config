@@ -102,14 +102,6 @@ local function setup_nvim_autopairs()
     end))
 end
 
-local function setup_kommentary()
-    vim.g.kommentary_create_default_mappings = false
-    require('kommentary.config').configure_language('default', {
-        prefer_single_line_comments = true,
-    })
-    require('plugins.key_bindings').setup_kommentary_keymaps()
-end
-
 local function setup_focus_nvim()
     require('focus').setup {}
 
@@ -361,33 +353,6 @@ local function setup_guess_indent_nvim()
     require('guess-indent').setup {}
 end
 
-local function setup_nvim_osc52()
-    require('osc52').setup {}
-
-    local function copy(lines, _)
-        require('osc52').copy(table.concat(lines, '\n'))
-    end
-
-    local function paste()
-        return {
-            vim.fn.split(vim.fn.getreg(''), '\n'),
-            vim.fn.getregtype('')
-        }
-    end
-
-    vim.g.clipboard = {
-        name = 'osc52',
-        copy = {
-            ['+'] = copy,
-            ['*'] = copy
-        },
-        paste = {
-            ['+'] = paste,
-            ['*'] = paste
-        }
-    }
-end
-
 local function setup_vim_silicon()
     --[[
         silicon --theme 'Monokai Extended' --background '#FFF0' --font 'Hack;PingFang SC' \
@@ -426,7 +391,6 @@ return {
     setup_close_buffers_nvim    = setup_close_buffers_nvim,
     setup_hop_nvim              = setup_hop_nvim,
     setup_nvim_autopairs        = setup_nvim_autopairs,
-    setup_kommentary            = setup_kommentary,
     setup_focus_nvim            = setup_focus_nvim,
     setup_telescope_nvim        = setup_telescope_nvim,
     setup_project_nvim          = setup_project_nvim,
@@ -435,7 +399,6 @@ return {
     setup_null_ls_nvim          = setup_null_ls_nvim,
     setup_nvim_treesitter       = setup_nvim_treesitter,
     setup_aerial_nvim           = setup_aerial_nvim,
-    setup_nvim_osc52            = setup_nvim_osc52,
     setup_qf_nvim               = setup_qf_nvim,
     setup_nvim_colorizer_lua    = setup_nvim_colorizer_lua,
     setup_diffview_nvim         = setup_diffview_nvim,

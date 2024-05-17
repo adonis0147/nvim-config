@@ -32,6 +32,18 @@ vim.opt.timeoutlen = 500
 -- Set the clipboard
 vim.opt.clipboard:prepend('unnamed,unnamedplus')
 
+vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+}
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 7
 

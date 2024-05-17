@@ -24,11 +24,6 @@ local function setup_hop_nvim_keymaps()
     vim.keymap.set('x', '<leader>k', '<cmd>HopChar2BC<CR>', { noremap = true })
 end
 
-local function setup_kommentary_keymaps()
-    vim.keymap.set('n', '<leader>cc', '<plug>kommentary_line_default', {})
-    vim.keymap.set('x', '<leader>cc', '<plug>kommentary_visual_default', {})
-end
-
 local function setup_telescope_nvim_keymaps()
     local telescope = require('telescope')
     vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { noremap = true })
@@ -67,14 +62,13 @@ local function setup_vim_easy_align_keymaps()
 end
 
 local function setup_aerial_nvim_keymaps()
-    vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+    vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
 end
 
 return {
     setup_nvim_bufferline_keymaps    = setup_nvim_bufferline_keymaps,
     setup_close_buffers_nvim_keymaps = setup_close_buffers_nvim_keymaps,
     setup_hop_nvim_keymaps           = setup_hop_nvim_keymaps,
-    setup_kommentary_keymaps         = setup_kommentary_keymaps,
     setup_telescope_nvim_keymaps     = setup_telescope_nvim_keymaps,
     setup_qf_nvim_keymaps            = setup_qf_nvim_keymaps,
     setup_vim_easy_align_keymaps     = setup_vim_easy_align_keymaps,

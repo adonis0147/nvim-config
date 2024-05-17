@@ -15,35 +15,35 @@ local function setup_dap_key_bindings()
 end
 
 local function setup_dap()
-    local dap, dapui = require("dap"), require("dapui")
+    local dap, dapui = require('dap'), require('dapui')
 
     -- Events
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-        require("focus").setup({ autoresize = { enable = false } })
+    dap.listeners.after.event_initialized['dapui_config'] = function()
+        require('focus').setup({ autoresize = { enable = false } })
         dapui.open()
     end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
+    dap.listeners.before.event_terminated['dapui_config'] = function()
         dapui.close()
     end
-    dap.listeners.before.event_exited["dapui_config"] = function()
+    dap.listeners.before.event_exited['dapui_config'] = function()
         dapui.close()
-        require("focus").setup({ autoresize = { enable = true } })
+        require('focus').setup({ autoresize = { enable = true } })
     end
 
     -- Configurations
     dap.adapters.codelldb = {
         type = 'server',
-        port = "${port}",
+        port = '${port}',
         executable = {
             command = 'codelldb',
-            args = { "--port", "${port}" },
+            args = { '--port', '${port}' },
         }
     }
     dap.configurations.cpp = {
         {
-            name = "Launch file",
-            type = "codelldb",
-            request = "launch",
+            name = 'Launch file',
+            type = 'codelldb',
+            request = 'launch',
             program = function()
                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
             end,
@@ -63,22 +63,22 @@ local function setup_dap()
         {
             type = 'bashdb',
             request = 'launch',
-            name = "Launch file",
+            name = 'Launch file',
             showDebugOutput = true,
-            pathBashdb = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
-            pathBashdbLib = vim.fn.stdpath("data") .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+            pathBashdb = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+            pathBashdbLib = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
             trace = true,
-            file = "${file}",
-            program = "${file}",
+            file = '${file}',
+            program = '${file}',
             cwd = '${workspaceFolder}',
-            pathCat = "cat",
-            pathBash = "bash",
-            pathMkfifo = "mkfifo",
-            pathPkill = "pkill",
+            pathCat = 'cat',
+            pathBash = 'bash',
+            pathMkfifo = 'mkfifo',
+            pathPkill = 'pkill',
             args = {}, -- Prefer this to argsString
             argsString = '',
             env = {},
-            terminalKind = "integrated",
+            terminalKind = 'integrated',
         }
     }
 
@@ -112,11 +112,11 @@ local function setup_dap()
             -- The first three options are required by nvim-dap
             type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
             request = 'launch',
-            name = "Launch file",
+            name = 'Launch file',
 
             -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
 
-            program = "${file}", -- This configuration will launch the current file if used.
+            program = '${file}', -- This configuration will launch the current file if used.
             pythonPath = function()
                 -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
                 -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
@@ -142,11 +142,11 @@ local function setup_dap()
 end
 
 local function setup_nvim_dap_ui()
-    require("dapui").setup {}
+    require('dapui').setup {}
 end
 
 local function setup_nvim_dap_virtual_text()
-    require("nvim-dap-virtual-text").setup {}
+    require('nvim-dap-virtual-text').setup {}
 end
 
 return {

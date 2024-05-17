@@ -38,12 +38,7 @@ require('lazy').setup {
     {
         'windwp/nvim-autopairs',
         config = settings.setup_nvim_autopairs,
-        event = "InsertEnter"
-    },
-    {
-        'b3nj5m1n/kommentary',
-        config = settings.setup_kommentary,
-        keys = { { '<leader>cc', mode = { 'n', 'x' } } }
+        event = 'InsertEnter'
     },
     {
         'nvim-focus/focus.nvim',
@@ -86,7 +81,6 @@ require('lazy').setup {
     { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim },
     { 'mrcjkb/rustaceanvim',             ft = { 'rust' } },
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
-    { 'ojroques/nvim-osc52',             config = settings.setup_nvim_osc52 },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
     { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua },
     { 'sindrets/diffview.nvim',          config = settings.setup_diffview_nvim },
