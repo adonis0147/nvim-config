@@ -63,9 +63,6 @@ vim.opt.matchtime = 0
 -- Color the column
 vim.opt.colorcolumn = tostring(text_width)
 
--- Colorschema
-vim.cmd('colorscheme desert')
-
 -- Termguicolors
 vim.opt.termguicolors = true
 
@@ -82,9 +79,6 @@ vim.opt.wrap = false
 -- Don't automatically wrap text when typing.
 vim.opt.formatoptions:remove('t')
 
--- Use spaces instead of tabs
-vim.opt.expandtab = true
-
 -- Tab width
 vim.opt.tabstop = indent_width
 
@@ -94,6 +88,10 @@ vim.opt.shiftround = true
 
 -- Smart indent
 vim.opt.smartindent = true
+
+-- Show indent line for tabs
+vim.opt.list = true
+vim.opt.listchars = 'tab:¦ ,'
 
 --------------------------------------------------------------------------------
 --                                   Search                                   --
