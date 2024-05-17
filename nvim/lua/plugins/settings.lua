@@ -357,6 +357,10 @@ local function setup_diffview_nvim()
     }
 end
 
+local function setup_guess_indent_nvim()
+    require('guess-indent').setup {}
+end
+
 local function setup_nvim_osc52()
     require('osc52').setup {}
 
@@ -435,6 +439,7 @@ return {
     setup_qf_nvim               = setup_qf_nvim,
     setup_nvim_colorizer_lua    = setup_nvim_colorizer_lua,
     setup_diffview_nvim         = setup_diffview_nvim,
+    setup_guess_indent_nvim     = setup_guess_indent_nvim,
     setup_vim_silicon           = setup_vim_silicon,
     setup_lessspace_vim         = setup_lessspace_vim,
     setup_dap                   = setup_dap,
