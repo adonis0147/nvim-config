@@ -13,7 +13,7 @@ end
 
 local function delete_other_buffers(force)
     if not force then
-        vim.cmd('BDelete other')
+        pcall(function(cmd) vim.cmd(cmd) end, 'BDelete other')
     else
         vim.cmd('BDelete! other')
     end

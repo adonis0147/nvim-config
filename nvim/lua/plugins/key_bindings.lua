@@ -47,7 +47,11 @@ local function setup_qf_nvim_keymaps()
                 require('qf').toggle('l', true)
             end
         else
-            vim.cmd('bdelete')
+            local success, error = pcall(function(cmd) vim.cmd(cmd) end, 'bdelete')
+            if not success then
+                assert(error)
+                vim.notify(string.match(error, 'E%d+:.*'), vim.log.levels.ERROR)
+            end
         end
     end
 
