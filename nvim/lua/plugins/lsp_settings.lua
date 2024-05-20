@@ -28,6 +28,11 @@ local function on_attach(client, bufnr)
                     augroup END
                 ]])
     end
+
+    -- Enable inlay hint
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
 end
 
 local function setup_lsp_attach()
