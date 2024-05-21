@@ -73,9 +73,15 @@ local function setup_close_buffers_nvim()
     require('plugins.key_bindings').setup_close_buffers_nvim_keymaps()
 end
 
-local function setup_hop_nvim()
-    require('hop').setup {}
-    require('plugins.key_bindings').setup_hop_nvim_keymaps()
+local function setup_flash_nvim()
+    require('flash').setup {
+        modes = {
+            char = {
+                enabled = false
+            }
+        }
+    }
+    require('plugins.key_bindings').setup_flash_nvim_keymaps()
 end
 
 local function setup_nvim_autopairs()
@@ -385,7 +391,7 @@ return {
     setup_lualine_nvim          = setup_lualine_nvim,
     setup_nvim_cokeline         = setup_nvim_cokeline,
     setup_close_buffers_nvim    = setup_close_buffers_nvim,
-    setup_hop_nvim              = setup_hop_nvim,
+    setup_flash_nvim            = setup_flash_nvim,
     setup_nvim_autopairs        = setup_nvim_autopairs,
     setup_focus_nvim            = setup_focus_nvim,
     setup_telescope_nvim        = setup_telescope_nvim,
