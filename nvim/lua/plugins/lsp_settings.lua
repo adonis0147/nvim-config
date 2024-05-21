@@ -20,17 +20,17 @@ local function on_attach(client, bufnr)
     vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, keymap_opts)
 
     -- Format code on save.
-    if client.server_capabilities.documentFormattingProvider then
+    if client.supports_method('documentFormatting') then
         vim.cmd([[
-                    augroup LspFormatting
-                    autocmd! * <buffer>
-                    autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-                    augroup END
-                ]])
+            augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+            augroup END
+        ]])
     end
 
     -- Enable inlay hint
-    if client.server_capabilities.inlayHintProvider then
+    if client.supports_method('inlayHint') then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 end
