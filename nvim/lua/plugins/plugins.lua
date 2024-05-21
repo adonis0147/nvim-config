@@ -85,6 +85,7 @@ require('lazy').setup {
     { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua },
     { 'sindrets/diffview.nvim',          config = settings.setup_diffview_nvim },
     { 'NMAC427/guess-indent.nvim',       config = settings.setup_guess_indent_nvim },
+    { "folke/ts-comments.nvim",          opts = {},                                 event = "VeryLazy" },
     'tpope/vim-surround',
     'tpope/vim-repeat',
     'azabiong/vim-highlighter',
