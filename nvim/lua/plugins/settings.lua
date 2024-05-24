@@ -249,7 +249,7 @@ local function setup_nvim_cmp()
     }
 
     -- cmp-cmdline
-    cmp.setup.cmdline('/', {
+    cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
             { name = 'buffer' }
@@ -261,7 +261,8 @@ local function setup_nvim_cmp()
             { name = 'path' }
         }, {
             { name = 'cmdline' }
-        })
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false }
     })
 
     -- Load snippets
