@@ -142,21 +142,7 @@ local function setup_mason()
     end
 end
 
-local function setup_null_ls_nvim()
-    local null_ls = require('null-ls')
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    null_ls.setup {
-        capabilities = capabilities,
-        sources = {
-            null_ls.builtins.code_actions.shellcheck,
-            null_ls.builtins.diagnostics.shellcheck,
-            null_ls.builtins.formatting.shfmt,
-        },
-    }
-end
-
 return {
-    setup_lsp_attach   = setup_lsp_attach,
-    setup_mason        = setup_mason,
-    setup_null_ls_nvim = setup_null_ls_nvim,
+    setup_lsp_attach = setup_lsp_attach,
+    setup_mason      = setup_mason,
 }

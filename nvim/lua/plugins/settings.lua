@@ -286,10 +286,6 @@ local function setup_nvim_treesitter()
     }
 end
 
-local function setup_null_ls_nvim()
-    require('plugins.lsp_settings').setup_null_ls_nvim()
-end
-
 local function setup_aerial_nvim()
     local aerial = require('aerial')
     aerial.setup {
@@ -398,7 +394,6 @@ return {
     setup_project_nvim          = setup_project_nvim,
     setup_nvim_cmp              = setup_nvim_cmp,
     setup_lsp                   = setup_lsp,
-    setup_null_ls_nvim          = setup_null_ls_nvim,
     setup_nvim_treesitter       = setup_nvim_treesitter,
     setup_aerial_nvim           = setup_aerial_nvim,
     setup_qf_nvim               = setup_qf_nvim,

@@ -75,7 +75,6 @@ require('lazy').setup {
         },
         config = settings.setup_lsp,
     },
-    { 'jose-elias-alvarez/null-ls.nvim', config = settings.setup_null_ls_nvim },
     { 'mrcjkb/rustaceanvim',             version = '^4',                            ft = { 'rust' } },
     { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
     { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
