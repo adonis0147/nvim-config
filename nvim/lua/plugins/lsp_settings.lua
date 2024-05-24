@@ -19,8 +19,9 @@ local function on_attach(client, bufnr)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, keymap_opts)
     vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, keymap_opts)
 
+    -- :help lsp-method
     -- Format code on save.
-    if client.supports_method('documentFormatting') then
+    if client.supports_method('textDocument/formatting') then
         vim.cmd([[
             augroup LspFormatting
             autocmd! * <buffer>
@@ -30,8 +31,16 @@ local function on_attach(client, bufnr)
     end
 
     -- Enable inlay hint
-    if client.supports_method('inlayHint') then
+    if client.supports_method('textDocument/inlayHint') then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+    -- Enable code lens
+    if client.supports_method('textDocument/codeLens') then
+        vim.keymap.set('n', '<space>r', vim.lsp.codelens.run, keymap_opts)
+        vim.cmd([[
+            autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = bufnr })
+        ]])
     end
 end
 
@@ -114,9 +123,12 @@ local function setup_mason()
         end
     }
 
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local has_custom_settings, custom_settings = pcall(require, 'plugins.lsp_custom_settings')
     local default_setup = function(server)
-        local opts = {}
+        local opts = {
+            capabilities = capabilities,
+        }
         if enhance_server_opts[server] then
             -- Enhance the default opts with the server-specific ones
             enhance_server_opts[server](opts)
