@@ -283,7 +283,10 @@ local function setup_nvim_treesitter()
         },
         indent = {
             enable = true
-        }
+        },
+        incremental_selection = {
+            enable = true
+        },
     }
 end
 
