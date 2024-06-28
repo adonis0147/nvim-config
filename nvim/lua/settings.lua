@@ -89,10 +89,6 @@ vim.opt.shiftround = true
 -- Smart indent
 vim.opt.smartindent = true
 
--- Show indent line for tabs
-vim.opt.list = true
-vim.opt.listchars = 'tab:¦ ,'
-
 --------------------------------------------------------------------------------
 --                                   Search                                   --
 --------------------------------------------------------------------------------

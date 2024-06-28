@@ -359,6 +359,13 @@ local function setup_guess_indent_nvim()
     require('guess-indent').setup {}
 end
 
+local function setup_indent_blankline_nvim()
+    require('ibl').setup {
+        indent = { char = '¦' },
+        scope = { enabled = false },
+    }
+end
+
 local function setup_vim_silicon()
     --[[
         silicon --theme 'Monokai Extended' --background '#FFF0' --font 'Hack;PingFang SC' \
@@ -404,6 +411,7 @@ return {
     setup_nvim_colorizer_lua    = setup_nvim_colorizer_lua,
     setup_diffview_nvim         = setup_diffview_nvim,
     setup_guess_indent_nvim     = setup_guess_indent_nvim,
+    setup_indent_blankline_nvim = setup_indent_blankline_nvim,
     setup_vim_silicon           = setup_vim_silicon,
     setup_dap                   = setup_dap,
     setup_nvim_dap_ui           = setup_nvim_dap_ui,
