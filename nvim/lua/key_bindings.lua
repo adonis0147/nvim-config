@@ -36,7 +36,7 @@ vim.keymap.set('n', '<leader>s', require('functions').toggle_spell_checking, { n
 -- Build and run
 local function save_and_run_cmd(cmd)
     local cmd_string = '<esc>:w<cr>'
-    return cmd_string .. ':terminal ' .. cmd .. ' <cr>'
+    return cmd_string .. ':split term://' .. cmd .. ' <cr>'
 end
 
 -- Make

@@ -141,6 +141,18 @@ local function setup_focus_nvim()
         end,
         desc = 'Disable focus autoresize for FileType',
     })
+
+    vim.api.nvim_create_autocmd('TermOpen', {
+        callback = function(_)
+            vim.g.focus_disable = true
+        end,
+    })
+
+    vim.api.nvim_create_autocmd('TermClose', {
+        callback = function(_)
+            vim.g.focus_disable = false
+        end,
+    })
 end
 
 local function setup_telescope_nvim()
