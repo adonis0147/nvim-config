@@ -19,8 +19,8 @@ vim.keymap.set('', '<c-k>', '<c-w>k', { noremap = true })
 vim.keymap.set('', '<c-l>', '<c-w>l', { noremap = true })
 
 -- Easier moving between tabs
-vim.keymap.set({ 'n', 't' }, '<leader>n', '<cmd>bprevious<cr>', { noremap = true })
-vim.keymap.set({ 'n', 't' }, '<leader>m', '<cmd>bnext<cr>', { noremap = true })
+vim.keymap.set({ 'n' }, '<leader>n', '<cmd>bprevious<cr>', { noremap = true })
+vim.keymap.set({ 'n' }, '<leader>m', '<cmd>bnext<cr>', { noremap = true })
 
 -- Easier moving of code blocks
 vim.keymap.set('x', '<', '<gv', { noremap = true })
