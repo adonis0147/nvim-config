@@ -22,6 +22,7 @@ local key_bindings = require('plugins.key_bindings')
 
 require('lazy').setup {
     'nvim-lua/plenary.nvim',
+    { 'nvim-tree/nvim-web-devicons' },
     { 'tanvirtin/monokai.nvim',     config = settings.setup_monokai_nvim },
     {
         'nvim-lualine/lualine.nvim',
