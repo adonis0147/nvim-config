@@ -11,7 +11,9 @@ local function setup_dap_key_bindings()
         function() require('dap').set_breakpoint(vim.fn.input('Condition: '), nil, nil) end)
     vim.keymap.set('n', '<m-d>', function() require('dapui').eval() end)
     vim.keymap.set('n', '<m-f>',
-        function() require('dapui').eval(vim.fn.input('Expression: '), { context = 'repl' }) end)
+        function() require('dapui').eval(vim.fn.input('Expression: '), { context = 'watch' }) end)
+    vim.keymap.set('n', '<m-o>',
+        function() require('dapui').open({ reset = true }) end)
 end
 
 local function setup_dap()
@@ -50,6 +52,7 @@ local function setup_dap()
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
             args = {},
+            expressions = 'native',
         },
     }
     dap.configurations.c = dap.configurations.cpp
