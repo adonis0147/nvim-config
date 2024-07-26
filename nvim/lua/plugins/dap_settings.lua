@@ -102,7 +102,7 @@ local function setup_dap()
         else
             cb({
                 type = 'executable',
-                command = vim.loop.os_homedir() .. '/.local/share/nvim/mason/packages/debugpy/venv/bin/python3',
+                command = vim.uv.os_homedir() .. '/.local/share/nvim/mason/packages/debugpy/venv/bin/python3',
                 args = { '-m', 'debugpy.adapter' },
                 options = {
                     source_filetype = 'python',
