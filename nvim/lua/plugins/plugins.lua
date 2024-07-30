@@ -39,7 +39,7 @@ require('lazy').setup {
     { 'folke/flash.nvim',                    config = settings.setup_flash_nvim,            event = 'VeryLazy' },
     { 'folke/ts-comments.nvim',              opts = {},                                     event = 'VeryLazy' },
     { 'windwp/nvim-autopairs',               config = settings.setup_nvim_autopairs,        event = 'InsertEnter' },
-    { 'ahmedkhalf/project.nvim',             config = settings.setup_project_nvim,          event = 'VeryLazy' },
+    { 'ahmedkhalf/project.nvim',             config = settings.setup_project_nvim,          event = 'VimEnter' },
     {
         'nvim-telescope/telescope.nvim',
         dependencies = {
