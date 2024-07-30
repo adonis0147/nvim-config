@@ -21,48 +21,43 @@ local settings = require('plugins.settings')
 local key_bindings = require('plugins.key_bindings')
 
 require('lazy').setup {
-    'nvim-lua/plenary.nvim',
-    { 'nvim-tree/nvim-web-devicons' },
-    { 'tanvirtin/monokai.nvim',     config = settings.setup_monokai_nvim },
-    {
-        'nvim-lualine/lualine.nvim',
-        config = settings.setup_lualine_nvim,
-        event = 'BufEnter'
+    { 'tanvirtin/monokai.nvim',
+        config = settings.setup_monokai_nvim,
+        lazy = false,
+        priority = 1000
     },
-    { 'willothy/nvim-cokeline',     config = settings.setup_nvim_cokeline },
-    { 'kazhala/close-buffers.nvim', config = settings.setup_close_buffers_nvim },
-    { 'folke/flash.nvim',           config = settings.setup_flash_nvim,        event = 'VeryLazy' },
-    { 'folke/ts-comments.nvim',     opts = {},                                 event = 'VeryLazy' },
-    {
-        'windwp/nvim-autopairs',
-        config = settings.setup_nvim_autopairs,
-        event = 'InsertEnter'
-    },
-    {
-        'nvim-focus/focus.nvim',
-        config = settings.setup_focus_nvim,
-        cond = 'not vim.o.diff',
-        event = 'BufNew'
-    },
+    { 'nvim-lua/plenary.nvim',               lazy = true },
+    { "nvim-tree/nvim-web-devicons",         lazy = true },
+    { 'neovim/nvim-lspconfig',               lazy = true },
+    { 'nvim-treesitter/nvim-treesitter',     config = settings.setup_nvim_treesitter,       event = 'VeryLazy' },
+    { 'nvim-lualine/lualine.nvim',           config = settings.setup_lualine_nvim,          event = 'BufWinEnter' },
+    { 'willothy/nvim-cokeline',              config = settings.setup_nvim_cokeline,         event = { 'BufAdd', 'TabNew' } },
+    { 'kazhala/close-buffers.nvim',          config = settings.setup_close_buffers_nvim,    keys = { '<leader>b', '<leader>B' } },
+    { 'ten3roberts/qf.nvim',                 config = settings.setup_qf_nvim,               event = 'VeryLazy' },
+    { 'NMAC427/guess-indent.nvim',           config = settings.setup_guess_indent_nvim,     event = { 'BufNewFile', 'BufReadPost' } },
+    { 'lukas-reineke/indent-blankline.nvim', config = settings.setup_indent_blankline_nvim, event = 'VeryLazy' },
+    { 'folke/flash.nvim',                    config = settings.setup_flash_nvim,            event = 'VeryLazy' },
+    { 'folke/ts-comments.nvim',              opts = {},                                     event = 'VeryLazy' },
+    { 'windwp/nvim-autopairs',               config = settings.setup_nvim_autopairs,        event = 'InsertEnter' },
+    { 'ahmedkhalf/project.nvim',             config = settings.setup_project_nvim,          event = 'VeryLazy' },
     {
         'nvim-telescope/telescope.nvim',
         dependencies = {
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             'nvim-telescope/telescope-live-grep-args.nvim',
-            { 'stevearc/aerial.nvim',                     config = settings.setup_aerial_nvim },
+            { 'stevearc/aerial.nvim',                     config = settings.setup_aerial_nvim, keys = '<leader>a' },
         },
         config = settings.setup_telescope_nvim,
         keys = { '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh', '<leader>fw', '<leader>fa' },
     },
-    { 'ahmedkhalf/project.nvim',         config = settings.setup_project_nvim },
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            { 'saadparwaiz1/cmp_luasnip',    dependencies = { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' } },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'hrsh7th/cmp-cmdline' },
-            { 'rafamadriz/friendly-snippets' },
+            { 'saadparwaiz1/cmp_luasnip', dependencies = { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' } },
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'rafamadriz/friendly-snippets',
         },
         config = settings.setup_nvim_cmp,
         event = { 'InsertEnter', 'CmdlineEnter' },
@@ -70,41 +65,37 @@ require('lazy').setup {
     {
         'williamboman/mason.nvim',
         dependencies = {
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'neovim/nvim-lspconfig' },
-            { 'hrsh7th/cmp-nvim-lsp' },
+            'williamboman/mason-lspconfig.nvim',
+            'hrsh7th/cmp-nvim-lsp',
         },
         config = settings.setup_lsp,
+        event = { 'BufNewFile', 'BufReadPost' }
     },
-    { 'mrcjkb/rustaceanvim',             version = '^4',                            ft = { 'rust' } },
-    { 'nvim-treesitter/nvim-treesitter', config = settings.setup_nvim_treesitter },
-    { 'ten3roberts/qf.nvim',             config = settings.setup_qf_nvim },
-    { 'norcalli/nvim-colorizer.lua',     config = settings.setup_nvim_colorizer_lua },
-    { 'sindrets/diffview.nvim',          config = settings.setup_diffview_nvim },
-    { 'NMAC427/guess-indent.nvim',       config = settings.setup_guess_indent_nvim },
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        dependencies = { 'tanvirtin/monokai.nvim' },
-        config = settings.setup_indent_blankline_nvim,
-    },
-    'tpope/vim-surround',
-    'tpope/vim-repeat',
-    'azabiong/vim-highlighter',
-    { 'junegunn/vim-easy-align',             config = key_bindings.setup_vim_easy_align_keymaps },
-    { 'mattn/emmet-vim',                     ft = { 'html', 'xml' } },
-    { 'segeljakt/vim-silicon',               config = settings.setup_vim_silicon },
-    { 'axelf4/vim-strip-trailing-whitespace' },
+    { 'mrcjkb/rustaceanvim',                  version = '^4',                                     ft = 'rust' },
     {
         'mfussenegger/nvim-dap',
         dependencies = {
             {
                 'rcarriga/nvim-dap-ui',
-                dependencies = { 'tanvirtin/monokai.nvim', 'nvim-neotest/nvim-nio' },
-                config = settings.setup_nvim_dap_ui
+                dependencies = { { 'nvim-neotest/nvim-nio', lazy = true } },
+                config = settings.setup_nvim_dap_ui,
             },
             { 'theHamsta/nvim-dap-virtual-text', config = settings.setup_nvim_dap_virtual_text }
         },
-        config = settings.setup_dap
+        config = settings.setup_dap,
+        keys = { '<m-k>', '<m-b>', '<m-B>', '<m-p>', '<m-c>' },
     },
-    { 'LiadOz/nvim-dap-repl-highlights', config = true },
+    { 'LiadOz/nvim-dap-repl-highlights',      config = true,                                      ft = 'dap-repl' },
+    { 'norcalli/nvim-colorizer.lua',          config = settings.setup_nvim_colorizer_lua,         event = 'VeryLazy' },
+    { 'nvim-focus/focus.nvim',                config = settings.setup_focus_nvim,                 event = 'VeryLazy' },
+    { 'sindrets/diffview.nvim',               config = settings.setup_diffview_nvim,              event = 'VeryLazy' },
+
+    -- Vim plugins
+    { 'axelf4/vim-strip-trailing-whitespace', event = { 'BufNewFile', 'BufReadPost' } },
+    { 'tpope/vim-surround',                   event = 'VeryLazy' },
+    { 'tpope/vim-repeat',                     event = 'VeryLazy' },
+    { 'mattn/emmet-vim',                      ft = { 'html', 'xml' } },
+    { 'azabiong/vim-highlighter',             keys = 'f' },
+    { 'junegunn/vim-easy-align',              config = key_bindings.setup_vim_easy_align_keymaps, keys = { { '<enter>', mode = 'x' }, 'ga' } },
+    { 'segeljakt/vim-silicon',                config = settings.setup_vim_silicon,                event = 'CmdlineEnter' },
 }
