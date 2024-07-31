@@ -111,7 +111,7 @@ end
 local function setup_focus_nvim()
     require('focus').setup {}
 
-    local ignore_filetypes = { 'aerial' }
+    local ignore_filetypes = { 'aerial', 'qf' }
     local ignore_buftypes = { 'nofile', 'prompt', 'popup' }
 
     local augroup =
