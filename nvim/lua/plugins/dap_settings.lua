@@ -7,8 +7,7 @@ local function setup_dap_key_bindings()
     vim.keymap.set('n', '<m-B>', function() require('dap').set_breakpoint() end)
     vim.keymap.set('n', '<m-p>',
         function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-    vim.keymap.set('n', '<m-c>',
-        function() require('dap').set_breakpoint(vim.fn.input('Condition: '), nil, nil) end)
+    vim.keymap.set('n', '<m-c>', function() require('dap').set_breakpoint(vim.fn.input('Condition: '), nil, nil) end)
     vim.keymap.set('n', '<m-d>', function() require('dapui').eval() end)
     vim.keymap.set('n', '<m-f>',
         function() require('dapui').eval(vim.fn.input('Expression: '), { context = 'watch' }) end)
@@ -21,7 +20,7 @@ local function setup_dap()
 
     -- Events
     dap.listeners.after.event_initialized['dapui_config'] = function()
-        require('focus').setup({ autoresize = { enable = false } })
+        require('focus').setup({ autoresize = { enable = false }, ui = { signcolumn = false } })
         dapui.open()
     end
     dap.listeners.before.event_terminated['dapui_config'] = function()
@@ -29,7 +28,7 @@ local function setup_dap()
     end
     dap.listeners.before.event_exited['dapui_config'] = function()
         dapui.close()
-        require('focus').setup({ autoresize = { enable = true } })
+        require('focus').setup({ autoresize = { enable = true }, ui = { signcolumn = true } })
     end
 
     -- Configurations
