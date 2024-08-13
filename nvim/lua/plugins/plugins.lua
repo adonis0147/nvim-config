@@ -87,7 +87,7 @@ require('lazy').setup {
     },
     { 'LiadOz/nvim-dap-repl-highlights',      config = true,                                      ft = 'dap-repl' },
     { 'norcalli/nvim-colorizer.lua',          config = settings.setup_nvim_colorizer_lua,         event = 'VeryLazy' },
-    { 'nvim-focus/focus.nvim',                config = settings.setup_focus_nvim,                 event = 'VeryLazy' },
+    { 'nvim-focus/focus.nvim',                config = settings.setup_focus_nvim,                 event = 'BufEnter' },
     { 'sindrets/diffview.nvim',               config = settings.setup_diffview_nvim,              event = 'VeryLazy' },
 
     -- Vim plugins
