@@ -39,6 +39,7 @@ require('lazy').setup {
     { 'folke/flash.nvim',                    config = settings.setup_flash_nvim,            event = 'VeryLazy' },
     { 'folke/ts-comments.nvim',              opts = {},                                     event = 'VeryLazy' },
     { 'windwp/nvim-autopairs',               config = settings.setup_nvim_autopairs,        event = 'InsertEnter' },
+    { 'kylechui/nvim-surround',              config = settings.setup_nvim_surround,         event = 'VeryLazy' },
     { 'ahmedkhalf/project.nvim',             config = settings.setup_project_nvim,          event = 'VimEnter' },
     {
         'nvim-telescope/telescope.nvim',
@@ -92,8 +93,6 @@ require('lazy').setup {
 
     -- Vim plugins
     { 'axelf4/vim-strip-trailing-whitespace', event = { 'BufNewFile', 'BufReadPost' } },
-    { 'tpope/vim-surround',                   event = 'VeryLazy' },
-    { 'tpope/vim-repeat',                     event = 'VeryLazy' },
     { 'mattn/emmet-vim',                      ft = { 'html', 'xml' } },
     { 'azabiong/vim-highlighter',             keys = 'f' },
     { 'junegunn/vim-easy-align',              config = key_bindings.setup_vim_easy_align_keymaps, keys = { { '<enter>', mode = 'x' }, 'ga' } },

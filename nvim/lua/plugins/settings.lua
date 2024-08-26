@@ -108,6 +108,10 @@ local function setup_nvim_autopairs()
     end))
 end
 
+local function setup_nvim_surround()
+    require('nvim-surround').setup {}
+end
+
 local function setup_focus_nvim()
     require('focus').setup {}
 
@@ -412,6 +416,7 @@ return {
     setup_close_buffers_nvim    = setup_close_buffers_nvim,
     setup_flash_nvim            = setup_flash_nvim,
     setup_nvim_autopairs        = setup_nvim_autopairs,
+    setup_nvim_surround         = setup_nvim_surround,
     setup_focus_nvim            = setup_focus_nvim,
     setup_telescope_nvim        = setup_telescope_nvim,
     setup_project_nvim          = setup_project_nvim,
