@@ -42,7 +42,11 @@ local function setup_nvim_cokeline()
         },
         components = {
             {
-                text = function(buffer) return ' ' .. buffer.index .. ': ' .. buffer.filename .. ' ' end,
+                text = function(buffer) return ' ' .. buffer.devicon.icon end,
+                fg = function(buffer) return buffer.devicon.color end,
+            },
+            {
+                text = function(buffer) return buffer.index .. ': ' .. buffer.filename .. ' ' end,
             },
             {
                 text = function(buffer)
