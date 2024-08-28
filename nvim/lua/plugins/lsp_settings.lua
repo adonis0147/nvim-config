@@ -38,9 +38,8 @@ local function on_attach(client, bufnr)
     -- Enable code lens
     if client.supports_method('textDocument/codeLens') then
         vim.keymap.set('n', '<space>r', vim.lsp.codelens.run, keymap_opts)
-        vim.cmd([[
-            autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = bufnr })
-        ]])
+        vim.cmd('autocmd BufEnter,CursorHold,InsertLeave <buffer> ' ..
+            'lua vim.lsp.codelens.refresh({ bufnr = vim.api.nvim_get_current_buf() })')
     end
 end
 
