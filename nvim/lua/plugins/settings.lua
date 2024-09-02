@@ -10,19 +10,15 @@ end
 
 local function setup_lualine_nvim()
     require('lualine').setup {
-        options = {
-            icons_enabled = false,
-            theme = 'powerline',
-            component_separators = {},
-            section_separators = {},
-        },
+        options = { theme = 'powerline' },
         sections = {
             lualine_x = {
                 {
-                    require('lazy.status').updates,
-                    cond = require('lazy.status').has_updates,
-                    color = { fg = '#ff9e64' },
+                    require("lazy.status").updates,
+                    cond = require("lazy.status").has_updates,
+                    color = { fg = "#ff9e64" },
                 },
+                'encoding', 'fileformat', 'filetype',
             },
         },
     }
