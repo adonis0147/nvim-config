@@ -10,8 +10,18 @@ end
 
 local function setup_lualine_nvim()
     require('lualine').setup {
-        options = { theme = 'powerline' },
+        options = {
+            theme = 'powerline',
+        },
         sections = {
+            lualine_b = {
+                'branch',
+                'diff',
+                {
+                    'diagnostics',
+                    symbols = { error = 'E:', warn = 'W:', info = 'I:', hint = 'H:' },
+                }
+            },
             lualine_x = {
                 {
                     require("lazy.status").updates,
