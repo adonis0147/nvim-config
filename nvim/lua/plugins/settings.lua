@@ -2,6 +2,13 @@
 --                                  Settings                                  --
 --------------------------------------------------------------------------------
 
+local diagnostic_icons = {
+    Error = '󰅚 ', -- x000f015a
+    Warn  = '󰀪 ', -- x000f002a
+    Info  = '󰋽 ', -- x000f02fd
+    Hint  = '󰌶 ', -- x000f0336
+}
+
 local function setup_monokai_nvim()
     require('monokai').setup { palette = require('monokai').pro }
     -- Highlights
@@ -16,9 +23,9 @@ local function setup_lualine_nvim()
         sections = {
             lualine_x = {
                 {
-                    require("lazy.status").updates,
-                    cond = require("lazy.status").has_updates,
-                    color = { fg = "#ff9e64" },
+                    require('lazy.status').updates,
+                    cond = require('lazy.status').has_updates,
+                    color = { fg = '#ff9e64' },
                 },
                 'encoding', 'fileformat', 'filetype',
             },
@@ -291,6 +298,18 @@ local function setup_lsp()
     local lsp_settings = require('plugins.lsp_settings')
     lsp_settings.setup_lsp_attach()
     lsp_settings.setup_mason()
+
+    -- Setup diagnostic symbols
+    vim.diagnostic.config {
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
+                [vim.diagnostic.severity.WARN]  = diagnostic_icons.Warn,
+                [vim.diagnostic.severity.INFO]  = diagnostic_icons.Info,
+                [vim.diagnostic.severity.HINT]  = diagnostic_icons.Hint,
+            }
+        }
+    }
 end
 
 local function setup_nvim_treesitter()
@@ -331,6 +350,11 @@ local function setup_qf_nvim()
         },
     }
     require('plugins.key_bindings').setup_qf_nvim_keymaps()
+
+    for type, icon in pairs(diagnostic_icons) do
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+    end
 end
 
 local function setup_nvim_colorizer_lua()

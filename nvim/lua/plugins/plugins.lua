@@ -29,7 +29,7 @@ require('lazy').setup {
             priority = 1000
         },
         { 'nvim-lua/plenary.nvim',               lazy = true },
-        { "nvim-tree/nvim-web-devicons",         lazy = true },
+        { 'nvim-tree/nvim-web-devicons',         lazy = true },
         { 'neovim/nvim-lspconfig',               lazy = true },
         { 'nvim-treesitter/nvim-treesitter',     config = settings.setup_nvim_treesitter,       event = 'VeryLazy' },
         { 'nvim-lualine/lualine.nvim',           config = settings.setup_lualine_nvim,          event = 'BufWinEnter' },
