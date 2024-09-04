@@ -425,6 +425,18 @@ end
 
 local function setup_dap()
     require('plugins.dap_settings').setup_dap()
+
+    local signs = {
+        Breakpoint          = '',
+        BreakpointCondition = '',
+        LogPoint            = '',
+        Stopped             = '',
+        BreakpointRejected  = '',
+    }
+    for type, icon in pairs(signs) do
+        local highlight = 'Dap' .. type
+        vim.fn.sign_define(highlight, { text = icon, texthl = highlight })
+    end
 end
 
 local function setup_nvim_dap_ui()
