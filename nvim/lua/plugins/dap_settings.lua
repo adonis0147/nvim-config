@@ -15,6 +15,27 @@ local function setup_dap_key_bindings()
         function() require('dapui').open({ reset = true }) end)
 end
 
+local function merge_custom_dap_configs(type_to_filetypes)
+    local dap = require('dap')
+    local custom_configs = require('dap.ext.vscode').getconfigs()
+    assert(custom_configs, 'launch.json must have a "configurations" key')
+
+    for _, config in ipairs(custom_configs) do
+        assert(config.type, 'Configuration in launch.json must have a "type" key')
+        assert(config.name, 'Configuration in launch.json must have a "name" key')
+
+        local filetypes = type_to_filetypes[config.type] or { config.type, }
+        for _, filetype in pairs(filetypes) do
+            local dap_configurations = dap.configurations[filetype] or {}
+            for i, dap_config in pairs(dap_configurations) do
+                if dap_config.name == config.name then
+                    dap_configurations[i] = vim.tbl_extend('force', dap_config, config)
+                end
+            end
+        end
+    end
+end
+
 local function setup_dap()
     local dap, dapui = require('dap'), require('dapui')
 
@@ -32,18 +53,19 @@ local function setup_dap()
     end
 
     -- Configurations
-    dap.adapters.codelldb = {
-        type = 'server',
-        port = '${port}',
-        executable = {
-            command = 'codelldb',
-            args = { '--port', '${port}' },
-        }
+    dap.adapters.cppdbg = {
+        id = 'cppdbg',
+        type = 'executable',
+        command = 'OpenDebugAD7',
+    }
+    dap.adapters.lldb = {
+        name = 'lldb',
+        type = 'executable',
+        command = vim.fn.exepath('lldb-dap')
     }
     dap.configurations.cpp = {
         {
             name = 'Launch file',
-            type = 'codelldb',
             request = 'launch',
             program = function()
                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
@@ -51,9 +73,29 @@ local function setup_dap()
             cwd = '${workspaceFolder}',
             stopOnEntry = false,
             args = {},
-            expressions = 'native',
         },
     }
+    local cpp_config
+    if vim.fn.executable('OpenDebugAD7') == 1 then
+        cpp_config = {
+            type = 'cppdbg',
+            setupCommands = {
+                {
+                    text = '-enable-pretty-printing',
+                    description = 'enable pretty printing',
+                    ignoreFailures = false
+                },
+            },
+        }
+    else
+        cpp_config = {
+            type = 'lldb',
+            runInTerminal = true,
+        }
+    end
+    for index, dap_configuration in ipairs(dap.configurations.cpp) do
+        dap.configurations.cpp[index] = vim.tbl_extend('force', dap_configuration, cpp_config)
+    end
     dap.configurations.c = dap.configurations.cpp
 
     dap.adapters.bashdb = {
@@ -137,10 +179,11 @@ local function setup_dap()
 
     setup_dap_key_bindings()
 
-    require('dap.ext.vscode').load_launchjs(nil, {
-        ['codelldb'] = { 'cpp', 'c', 'rust' },
-        ['bashdb'] = { 'sh' }
-    })
+    merge_custom_dap_configs {
+        ['cppdbg'] = { 'cpp', 'c' },
+        ['lldb']   = { 'cpp', 'c' },
+        ['bashdb'] = { 'sh' },
+    }
 end
 
 local function setup_nvim_dap_ui()
