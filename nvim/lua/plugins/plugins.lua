@@ -87,6 +87,7 @@ require('lazy').setup {
             },
             config = settings.setup_dap,
             keys = { '<m-k>', '<m-b>', '<m-B>', '<m-p>', '<m-c>' },
+            event = 'BufNewFile launch.json',
         },
         { 'LiadOz/nvim-dap-repl-highlights',      config = true,                                      ft = 'dap-repl' },
         { 'norcalli/nvim-colorizer.lua',          config = settings.setup_nvim_colorizer_lua,         event = 'VeryLazy' },
