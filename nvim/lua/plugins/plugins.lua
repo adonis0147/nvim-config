@@ -74,7 +74,7 @@ require('lazy').setup {
             config = settings.setup_lsp,
             event = { 'BufNewFile', 'BufReadPost' }
         },
-        { 'mrcjkb/rustaceanvim',                  version = '^4',                                     ft = 'rust' },
+        { 'mrcjkb/rustaceanvim',                  version = '^5',                                     ft = 'rust' },
         {
             'mfussenegger/nvim-dap',
             dependencies = {

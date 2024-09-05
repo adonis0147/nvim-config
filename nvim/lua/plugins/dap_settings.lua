@@ -180,9 +180,9 @@ local function setup_dap()
     setup_dap_key_bindings()
 
     merge_custom_dap_configs {
-        ['cppdbg'] = { 'cpp', 'c' },
-        ['lldb']   = { 'cpp', 'c' },
-        ['bashdb'] = { 'sh' },
+        cppdbg = { 'cpp', 'c' },
+        lldb   = { 'cpp', 'c' },
+        bashdb = { 'sh' },
     }
 end
 
