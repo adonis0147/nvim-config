@@ -1,4 +1,5 @@
 local function setup_dap_key_bindings()
+    vim.keymap.set('n', '<m-r>', function() require('dap').run_to_cursor() end)
     vim.keymap.set('n', '<m-k>', function() require('dap').continue() end)
     vim.keymap.set('n', '<m-j>', function() require('dap').step_over() end)
     vim.keymap.set('n', '<m-l>', function() require('dap').step_into() end)
