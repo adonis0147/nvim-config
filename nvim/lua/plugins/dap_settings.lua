@@ -24,7 +24,7 @@ local function merge_custom_dap_configs(type_to_filetypes)
         assert(config.type, 'Configuration in launch.json must have a "type" key')
         assert(config.name, 'Configuration in launch.json must have a "name" key')
 
-        local filetypes = type_to_filetypes[config.type] or { config.type, }
+        local filetypes = type_to_filetypes[config.type] or { config.type }
         for _, filetype in pairs(filetypes) do
             local dap_configurations = dap.configurations[filetype] or {}
             for i, dap_config in pairs(dap_configurations) do
@@ -143,6 +143,7 @@ local function setup_dap()
         else
             cb({
                 type = 'executable',
+                ---@diagnostic disable-next-line: undefined-field
                 command = vim.uv.os_homedir() .. '/.local/share/nvim/mason/packages/debugpy/venv/bin/python3',
                 args = { '-m', 'debugpy.adapter' },
                 options = {

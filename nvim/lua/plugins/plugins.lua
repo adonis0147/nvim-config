@@ -4,6 +4,7 @@
 
 -- Runtime path
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+---@diagnostic disable-next-line: undefined-field
 if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         'git',
@@ -74,7 +75,7 @@ require('lazy').setup {
             config = settings.setup_lsp,
             event = { 'BufNewFile', 'BufReadPost' }
         },
-        { 'mrcjkb/rustaceanvim',                  version = '^5',                                     ft = 'rust' },
+        { 'mrcjkb/rustaceanvim',                  version = '*',                                      ft = 'rust' },
         {
             'mfussenegger/nvim-dap',
             dependencies = {
