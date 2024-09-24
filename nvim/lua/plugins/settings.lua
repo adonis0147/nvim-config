@@ -452,6 +452,7 @@ local function setup_dap()
             -- if bg or ctermbg aren't found, use bg = 'bg' (which means current Normal) and ctermbg = 'Black'
             -- convert to 6 digit hex value starting with #
             local sign_column_bg = (sign_column_hl.bg ~= nil) and ('#%06x'):format(sign_column_hl.bg) or 'bg'
+            ---@diagnostic disable-next-line: undefined-field
             local sign_column_ctermbg = (sign_column_hl.ctermbg ~= nil) and sign_column_hl.ctermbg or 'Black'
 
             vim.api.nvim_set_hl(0, 'DapBreakpoint',

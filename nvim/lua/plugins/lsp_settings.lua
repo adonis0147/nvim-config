@@ -108,6 +108,9 @@ local function setup_mason()
                 '--completion-style=detailed',
                 '--query-driver=/usr/bin/*',
             }
+            opts.init_options = {
+                fallbackFlags = { '-std=c++23' },
+            }
         end,
         ['pylsp'] = function(opts)
             opts.settings = {
