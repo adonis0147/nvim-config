@@ -102,5 +102,8 @@ require('lazy').setup {
         { 'junegunn/vim-easy-align',              config = key_bindings.setup_vim_easy_align_keymaps, keys = { { '<enter>', mode = 'x' }, 'ga' } },
         { 'segeljakt/vim-silicon',                config = settings.setup_vim_silicon,                event = 'CmdlineEnter' },
     },
-    checker = { enabled = true },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
 }
