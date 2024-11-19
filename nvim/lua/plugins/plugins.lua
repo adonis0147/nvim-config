@@ -32,6 +32,7 @@ require('lazy').setup {
         { 'nvim-lua/plenary.nvim',               lazy = true },
         { 'nvim-tree/nvim-web-devicons',         lazy = true },
         { 'neovim/nvim-lspconfig',               lazy = true },
+        { 'j-hui/fidget.nvim',                   opts = {},                                     event = 'VeryLazy' },
         { 'nvim-treesitter/nvim-treesitter',     config = settings.setup_nvim_treesitter,       event = 'VeryLazy' },
         { 'nvim-lualine/lualine.nvim',           config = settings.setup_lualine_nvim,          event = 'BufWinEnter' },
         { 'willothy/nvim-cokeline',              config = settings.setup_nvim_cokeline,         event = { 'BufAdd', 'TabNew' } },
