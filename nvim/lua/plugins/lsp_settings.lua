@@ -103,11 +103,6 @@ local function setup_mason()
             }
         end,
         ['clangd'] = function(opts)
-            opts.cmd = {
-                'clangd',
-                '--completion-style=detailed',
-                '--query-driver=/usr/bin/*',
-            }
             opts.init_options = {
                 fallbackFlags = { '-std=c++23' },
             }
