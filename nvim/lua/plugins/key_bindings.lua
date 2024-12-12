@@ -29,6 +29,7 @@ local function setup_telescope_nvim_keymaps()
     vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { noremap = true })
     vim.keymap.set('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { noremap = true })
     vim.keymap.set('n', '<leader>fa', '<cmd>Telescope aerial<cr>', { noremap = true })
+    vim.keymap.set('n', '<leader>fd', '<cmd>Telescope dap configurations<cr>', { noremap = true })
 end
 
 local function setup_qf_nvim_keymaps()

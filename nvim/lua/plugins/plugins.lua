@@ -51,9 +51,10 @@ require('lazy').setup {
                 { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
                 'nvim-telescope/telescope-live-grep-args.nvim',
                 { 'stevearc/aerial.nvim',                     config = settings.setup_aerial_nvim, keys = '<leader>a' },
+                'nvim-telescope/telescope-dap.nvim',
             },
             config = settings.setup_telescope_nvim,
-            keys = { '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh', '<leader>fw', '<leader>fa' },
+            keys = { '<leader>ff', '<leader>fg', '<leader>fb', '<leader>fh', '<leader>fw', '<leader>fa', '<leader>fd' },
         },
         {
             'hrsh7th/nvim-cmp',

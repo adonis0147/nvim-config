@@ -200,6 +200,7 @@ local function setup_telescope_nvim()
 
     telescope.load_extension('fzf')
     telescope.load_extension('aerial')
+    telescope.load_extension('dap')
 
     vim.cmd('autocmd User TelescopePreviewerLoaded setlocal wrap')
 
