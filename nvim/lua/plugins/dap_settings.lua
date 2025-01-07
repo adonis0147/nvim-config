@@ -28,10 +28,15 @@ local function merge_custom_dap_configs(type_to_filetypes)
         local filetypes = type_to_filetypes[config.type] or { config.type }
         for _, filetype in pairs(filetypes) do
             local dap_configurations = dap.configurations[filetype] or {}
+            local merge = false
             for i, dap_config in pairs(dap_configurations) do
                 if dap_config.name == config.name then
                     dap_configurations[i] = vim.tbl_extend('force', dap_config, config)
+                    merge = true
                 end
+            end
+            if not merge then
+                table.insert(dap_configurations, config)
             end
         end
     end
@@ -127,6 +132,23 @@ local function setup_dap()
         }
     }
 
+    local python_exepath = function()
+        local paths = {
+            ---@diagnostic disable-next-line: undefined-field
+            vim.uv.os_homedir() .. '/.local/share/nvim/mason/packages/debugpy/venv/bin/python3',
+            vim.fn.exepath('python3')
+        }
+        if os.getenv('VIRTUAL_ENV') ~= nil then
+            table.insert(paths, 1, os.getenv('VIRTUAL_ENV') .. '/bin/python3')
+        end
+
+        for _, path in ipairs(paths) do
+            if vim.fn.executable(path) == 1 then
+                return path
+            end
+        end
+    end
+
     dap.adapters.python = function(cb, config)
         if config.request == 'attach' then
             ---@diagnostic disable-next-line: undefined-field
@@ -144,8 +166,7 @@ local function setup_dap()
         else
             cb({
                 type = 'executable',
-                ---@diagnostic disable-next-line: undefined-field
-                command = vim.uv.os_homedir() .. '/.local/share/nvim/mason/packages/debugpy/venv/bin/python3',
+                command = python_exepath(),
                 args = { '-m', 'debugpy.adapter' },
                 options = {
                     source_filetype = 'python',
@@ -161,21 +182,8 @@ local function setup_dap()
             name = 'Launch file',
 
             -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
             program = '${file}', -- This configuration will launch the current file if used.
-            pythonPath = function()
-                -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-                -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-                -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-                local cwd = vim.fn.getcwd()
-                if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-                    return cwd .. '/venv/bin/python'
-                elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-                    return cwd .. '/.venv/bin/python'
-                else
-                    return 'python3'
-                end
-            end,
+            console = 'integratedTerminal',
         },
     }
 
