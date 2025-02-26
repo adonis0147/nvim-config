@@ -79,13 +79,6 @@ require('lazy').setup {
         },
         { 'mrcjkb/rustaceanvim',                  version = '*',                                      ft = 'rust' },
         {
-            'ray-x/go.nvim',
-            dependencies = { 'ray-x/guihua.lua' },
-            config = settings.setup_go_nvim,
-            ft = { 'go', 'gomod' },
-            event = { 'CmdlineEnter' }
-        },
-        {
             'mfussenegger/nvim-dap',
             dependencies = {
                 {
@@ -93,7 +86,8 @@ require('lazy').setup {
                     dependencies = { { 'nvim-neotest/nvim-nio', lazy = true } },
                     config = settings.setup_nvim_dap_ui,
                 },
-                { 'theHamsta/nvim-dap-virtual-text', config = settings.setup_nvim_dap_virtual_text }
+                { 'theHamsta/nvim-dap-virtual-text', config = settings.setup_nvim_dap_virtual_text },
+                { 'leoluz/nvim-dap-go',              config = settings.setup_nvim_dap_go },
             },
             config = settings.setup_dap,
             keys = { '<m-k>', '<m-b>', '<m-B>', '<m-p>', '<m-c>' },

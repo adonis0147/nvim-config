@@ -480,12 +480,8 @@ local function setup_nvim_dap_virtual_text()
     require('plugins.dap_settings').setup_nvim_dap_virtual_text()
 end
 
-local function setup_go_nvim()
-    if vim.fn.executable('go') == 1 then
-        require('go').setup {
-            lsp_cfg = true
-        }
-    end
+local function setup_nvim_dap_go()
+    require('plugins.dap_settings').setup_nvim_dap_go()
 end
 
 return {
@@ -512,5 +508,5 @@ return {
     setup_dap                   = setup_dap,
     setup_nvim_dap_ui           = setup_nvim_dap_ui,
     setup_nvim_dap_virtual_text = setup_nvim_dap_virtual_text,
-    setup_go_nvim               = setup_go_nvim,
+    setup_nvim_dap_go           = setup_nvim_dap_go,
 }
