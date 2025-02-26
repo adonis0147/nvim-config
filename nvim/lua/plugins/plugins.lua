@@ -79,6 +79,13 @@ require('lazy').setup {
         },
         { 'mrcjkb/rustaceanvim',                  version = '*',                                      ft = 'rust' },
         {
+            'ray-x/go.nvim',
+            dependencies = { 'ray-x/guihua.lua' },
+            config = settings.setup_go_nvim,
+            ft = { 'go', 'gomod' },
+            event = { 'CmdlineEnter' }
+        },
+        {
             'mfussenegger/nvim-dap',
             dependencies = {
                 {
