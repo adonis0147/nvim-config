@@ -119,8 +119,13 @@ local function setup_mason()
             }
         end,
         ['gopls'] = function(opts)
+            opts.cmd_env = {
+                GOFUMPT_SPLIT_LONG_LINES = 'on'
+            }
+
             opts.settings = {
                 gopls = {
+                    gofumpt = true,
                     ['hints'] = {
                         assignVariableTypes = true,
                         compositeLiteralFields = true,
