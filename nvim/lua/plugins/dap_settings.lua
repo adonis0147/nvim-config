@@ -206,6 +206,13 @@ end
 
 local function setup_nvim_dap_go()
     require('dap-go').setup {}
+
+    local configurations = require('dap').configurations.go
+    for _, configuration in ipairs(configurations) do
+        if configuration.name == 'Debug Package' then
+            configuration.dlvCwd = '${fileDirname}'
+        end
+    end
 end
 
 return {
