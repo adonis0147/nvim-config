@@ -173,6 +173,9 @@ local function setup_telescope_nvim()
     local actions = require('telescope.actions')
     telescope.setup {
         defaults = {
+            path_display = {
+                'truncate'
+            },
             mappings = {
                 i = {
                     ['<c-j>'] = actions.move_selection_next,
