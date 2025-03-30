@@ -47,6 +47,9 @@ vim.g.clipboard = {
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 7
 
+-- Completion
+vim.opt.completeopt:append('fuzzy')
+
 --------------------------------------------------------------------------------
 --                               User Interface                               --
 --------------------------------------------------------------------------------

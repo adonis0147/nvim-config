@@ -303,8 +303,10 @@ local function setup_lsp()
     lsp_settings.setup_lsp_attach()
     lsp_settings.setup_mason()
 
-    -- Setup diagnostic symbols
     vim.diagnostic.config {
+        virtual_text = true,
+
+        -- Setup diagnostic symbols
         signs = {
             text = {
                 [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
