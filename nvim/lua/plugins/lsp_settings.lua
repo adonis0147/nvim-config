@@ -98,7 +98,7 @@ local function setup_mason()
         end,
         ['clangd'] = function(opts)
             opts.init_options = {
-                fallbackFlags = { '-std=c++23' },
+                fallbackFlags = { '-std=c++23', '-fmodules' },
             }
         end,
         ['pylsp'] = function(opts)
@@ -151,7 +151,8 @@ local function setup_mason()
             end
         end
 
-        require('lspconfig')[server].setup(opts)
+        vim.lsp.config(server, opts)
+        vim.lsp.enable(server)
     end
 
     require('mason-lspconfig').setup_handlers {
