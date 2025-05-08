@@ -155,13 +155,13 @@ local function setup_mason()
         vim.lsp.enable(server)
     end
 
-    require('mason-lspconfig').setup_handlers {
-        default_setup,
-        ['rust_analyzer'] = function() end,
-    }
+    local installed_servers = require('mason-lspconfig').get_installed_servers()
+    for _, server in ipairs(installed_servers) do
+        default_setup(server)
+    end
 
-    local servers = get_extra_servers(enhance_server_opts);
-    for server, _ in pairs(servers) do
+    local extra_servers = get_extra_servers(enhance_server_opts)
+    for server, _ in pairs(extra_servers) do
         default_setup(server)
     end
 end
