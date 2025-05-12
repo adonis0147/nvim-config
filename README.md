@@ -1,18 +1,16 @@
 # nvim-config
 
 ## Dependencies
-1. [neovim](https://github.com/neovim/neovim) >= 0.10.0
+1. [neovim](https://github.com/neovim/neovim) >= 0.11.0
 2. [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ### Ubuntu
 
 ```shell
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install neovim ripgrep
+sudo snap install nvim --classic
 ```
 
-### MacOS
+### macOS
 
 ```shell
 brew install neovim ripgrep
