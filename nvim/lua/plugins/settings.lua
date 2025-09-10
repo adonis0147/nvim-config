@@ -133,7 +133,7 @@ local function setup_focus_nvim()
     vim.api.nvim_create_autocmd('WinEnter', {
         group = augroup,
         callback = function(_)
-            if vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
+            if vim.o.diff == 1 and vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
             then
                 vim.w.focus_disable = true
             else
@@ -146,7 +146,7 @@ local function setup_focus_nvim()
     vim.api.nvim_create_autocmd('FileType', {
         group = augroup,
         callback = function(_)
-            if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+            if vim.o.diff == 1 and vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
                 vim.b.focus_disable = true
             else
                 vim.b.focus_disable = false
