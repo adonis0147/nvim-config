@@ -319,18 +319,15 @@ local function setup_lsp()
 end
 
 local function setup_nvim_treesitter()
-    require('nvim-treesitter.configs').setup {
-        highlight = {
-            enable = true,
-            additional_vim_regex_highlighting = false,
-        },
-        indent = {
-            enable = true
-        },
-        incremental_selection = {
-            enable = true
-        },
-    }
+    vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+            local parsers = vim.tbl_keys(require('nvim-treesitter.parsers'))
+            if vim.tbl_contains(parsers, vim.bo.filetype) then
+                vim.treesitter.start()
+            end
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+    })
 end
 
 local function setup_aerial_nvim()

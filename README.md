@@ -2,18 +2,21 @@
 
 ## Dependencies
 1. [neovim](https://github.com/neovim/neovim) >= 0.11.0
-2. [ripgrep](https://github.com/BurntSushi/ripgrep)
+2. [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md)
+3. [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ### Ubuntu
 
 ```shell
 sudo snap install nvim --classic
+npm install -g tree-sitter-cli
 ```
 
 ### macOS
 
 ```shell
 brew install neovim ripgrep
+npm install -g tree-sitter-cli
 ```
 
 ## Installation
