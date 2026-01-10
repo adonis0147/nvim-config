@@ -321,10 +321,7 @@ end
 local function setup_nvim_treesitter()
     vim.api.nvim_create_autocmd('FileType', {
         callback = function()
-            local parsers = vim.tbl_keys(require('nvim-treesitter.parsers'))
-            if vim.tbl_contains(parsers, vim.bo.filetype) then
-                vim.treesitter.start()
-            end
+            pcall(vim.treesitter.start)
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
     })
