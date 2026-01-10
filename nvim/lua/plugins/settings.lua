@@ -109,7 +109,7 @@ local function setup_nvim_autopairs()
     npairs.add_rule(quote('"', '"', { '-vim', '-sh', '-zsh' }))
     npairs.add_rule(quote('"', '"', 'vim'):with_pair(cond.not_before_regex('^%s*$', -1)))
     npairs.add_rule(quote('"', '"', { 'sh', 'zsh' }):with_pair(function(opts)
-        if require('nvim-treesitter.parsers').has_parser() then
+        if vim.treesitter.get_parser() ~= nil then
             return ts_conds.is_not_ts_node({ 'string', 'comment' })(opts)
         else
             return cond.not_add_quote_inside_quote()(opts)
