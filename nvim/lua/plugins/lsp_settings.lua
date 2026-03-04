@@ -98,7 +98,7 @@ local function setup_mason()
         end,
         ['clangd'] = function(opts)
             opts.init_options = {
-                fallbackFlags = { '-std=c++23', '-fmodules' },
+                fallbackFlags = { '-std=c++23' },
             }
         end,
         ['pylsp'] = function(opts)
