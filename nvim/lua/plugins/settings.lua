@@ -362,10 +362,7 @@ local function setup_nvim_colorizer_lua()
 end
 
 local function setup_diffview_nvim()
-    local actions = require('diffview.actions')
-
     require('diffview').setup {
-        use_icons = false,
         view = {
             merge_tool = {
                 layout = 'diff4_mixed',
@@ -375,24 +372,6 @@ local function setup_diffview_nvim()
             view_opened = function(_)
                 require('focus').focus_disable()
             end
-        },
-        keymaps = {
-            diff4 = {
-                {
-                    {
-                        'n', 'x'
-                    },
-                    '1do', actions.diffget('ours'),
-                    { desc = 'Obtain the diff hunk from the OURS version of the file' }
-                },
-                {
-                    {
-                        'n', 'x'
-                    },
-                    '2do', actions.diffget('base'),
-                    { desc = 'Obtain the diff hunk from the BASE version of the file' }
-                },
-            },
         }
     }
 end
