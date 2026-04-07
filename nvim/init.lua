@@ -1,5 +1,4 @@
 require('settings')
-require('functions')
-require('key_bindings')
+require('utils')
 require('autocmds')
-require('plugins.plugins')
+require('key_bindings')

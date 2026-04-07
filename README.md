@@ -1,7 +1,7 @@
 # nvim-config
 
 ## Dependencies
-1. [neovim](https://github.com/neovim/neovim) >= 0.11.0
+1. [neovim](https://github.com/neovim/neovim) >= 0.12.0
 2. [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md)
 3. [ripgrep](https://github.com/BurntSushi/ripgrep)
 
@@ -46,6 +46,4 @@ See [nvim/lua/key_bindings.lua](https://github.com/adonis0147/nvim-config/blob/m
 
 ## Plugins Management
 
-Use [lazy.nvim](https://github.com/folke/lazy.nvim) to manage plugins.
-
-See [nvim/lua/plugins/plugins.lua](https://github.com/adonis0147/nvim-config/blob/main/nvim/lua/plugins/plugins.lua).
+See [nvim/plugin/](https://github.com/adonis0147/nvim-config/blob/main/nvim/plugin/).

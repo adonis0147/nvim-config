@@ -1,5 +1,2 @@
-tags
-nvim/plugin/*
 backup
-nvim/lua/plugins/lsp_custom_settings.lua
-lazy-lock.json
+nvim-pack-lock.json
