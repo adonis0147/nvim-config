@@ -74,7 +74,6 @@ vim.api.nvim_create_autocmd('FileType', {
 	callback = function()
 		vim.keymap.set('n', 'x', function()
 			local pack_name = get_pack_name()
-			print(pack_name)
 			if pack_name then
 				vim.notify('Delete pack: ' .. pack_name)
 				vim.system({ 'nvim', '-u', 'NONE',
