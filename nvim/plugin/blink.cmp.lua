@@ -10,11 +10,14 @@ vim.pack.add({
 }, { confirm = false })
 
 require('blink.cmp').setup {
-	keymap = { preset = 'enter' },
+	keymap = {
+		preset = 'enter',
+		['<cr>'] = { 'select_and_accept', 'fallback' },
+	},
 	cmdline = {
 		keymap = {
 			['<tab>'] = { 'show', 'accept' },
-			['<cr>'] = { 'select_accept_and_enter', 'fallback' }
+			['<cr>'] = { 'select_accept_and_enter', 'fallback' },
 		},
 		completion = { menu = { auto_show = true } },
 	},
