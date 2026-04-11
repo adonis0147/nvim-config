@@ -3,6 +3,7 @@ vim.pack.add({
 	'https://github.com/williamboman/mason.nvim',
 	'https://github.com/mason-org/mason-lspconfig.nvim',
 }, { confirm = false })
+
 local function on_attach(client, bufnr)
 	-- :help lsp-method
 	-- vim.lsp.protocol.Methods
@@ -32,6 +33,40 @@ local function on_attach(client, bufnr)
 	-- Enable code lens
 	if client:supports_method('textDocument/codeLens') then
 		vim.lsp.codelens.enable(true, { bufnr = bufnr })
+	end
+
+	-- Enable auto-trigger signature help
+	if client:supports_method('textDocument/signatureHelp') then
+		local group = vim.api.nvim_create_augroup('lsp_signature_' .. bufnr, { clear = true })
+		local timer = nil
+
+		-- Get trigger characters from LSP server
+		local trigger_chars = (
+			client.server_capabilities.signatureHelpProvider and
+			client.server_capabilities.signatureHelpProvider.triggerCharacters
+		) or {}
+
+		if #trigger_chars > 0 then
+			local function get_last_char()
+				local cursor = vim.api.nvim_win_get_cursor(0)
+				local line = vim.api.nvim_get_current_line()
+				local col = cursor[2]
+				return col > 0 and line:sub(col, col) or ''
+			end
+
+			local function check_signature_help()
+				if vim.tbl_contains(trigger_chars, get_last_char()) then
+					if timer then vim.fn.timer_stop(timer) end
+					timer = vim.fn.timer_start(50, function() vim.lsp.buf.signature_help() end)
+				end
+			end
+
+			vim.api.nvim_create_autocmd({ 'TextChangedI', 'TextChangedP', 'InsertEnter' }, {
+				group = group,
+				buffer = bufnr,
+				callback = check_signature_help,
+			})
+		end
 	end
 end
 
@@ -65,6 +100,7 @@ vim.lsp.util.open_floating_preview = Utils.overwrite(vim.lsp.util.open_floating_
 	opts.max_height = opts.max_height or math.min(20, vim.o.lines - 4)
 	return contents, syntax, opts
 end)
+
 
 require('mason').setup()
 
