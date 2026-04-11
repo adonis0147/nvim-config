@@ -3,7 +3,6 @@ vim.pack.add({
 	'https://github.com/williamboman/mason.nvim',
 	'https://github.com/mason-org/mason-lspconfig.nvim',
 }, { confirm = false })
-
 local function on_attach(client, bufnr)
 	-- :help lsp-method
 	-- vim.lsp.protocol.Methods
@@ -59,6 +58,13 @@ vim.diagnostic.config {
 		}
 	}
 }
+
+vim.lsp.util.open_floating_preview = Utils.overwrite(vim.lsp.util.open_floating_preview, function(contents, syntax, opts)
+	opts = opts or {}
+	opts.max_width = opts.max_width or math.min(120, vim.o.columns - 4)
+	opts.max_height = opts.max_height or math.min(20, vim.o.lines - 4)
+	return contents, syntax, opts
+end)
 
 require('mason').setup()
 

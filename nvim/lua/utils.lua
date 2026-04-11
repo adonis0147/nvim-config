@@ -20,3 +20,9 @@ Utils.get_diagnostic_icons = function()
 		Hint  = '󰌶 ', -- x000f0336
 	}
 end
+
+Utils.overwrite = function(func, interceptor)
+	return function(...)
+		return func(interceptor(...))
+	end
+end
