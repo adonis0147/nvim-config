@@ -31,9 +31,7 @@ local function on_attach(client, bufnr)
 	end
 
 	-- Enable code lens
-	if client:supports_method('textDocument/codeLens') then
-		vim.lsp.codelens.enable(true, { bufnr = bufnr })
-	end
+	require('lsp.codelens_eol').attach(bufnr)
 
 	-- Enable auto-trigger signature help
 	if client:supports_method('textDocument/signatureHelp') then
