@@ -10,21 +10,21 @@ local function on_attach(client, bufnr)
 
 	-- Format code on save.
 	if client:supports_method('textDocument/formatting') then
-		vim.cmd([[
-			augroup LspFormatting
-			autocmd! * <buffer>
-			autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-			augroup END
-		]])
+		local group = vim.api.nvim_create_augroup('lsp_formatting_' .. bufnr, { clear = true })
+		vim.api.nvim_create_autocmd('BufWritePre', {
+			group = group,
+			buffer = bufnr,
+			callback = function() vim.lsp.buf.format() end,
+		})
 	end
 
-	-- Enable inlay hint
+	-- Enable inlay hints
 	if client:supports_method('textDocument/inlayHint') then
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
 		vim.api.nvim_create_autocmd('LspProgress', {
 			buffer = bufnr,
-			callback = function(ev)
+			callback = function()
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end
 		})
