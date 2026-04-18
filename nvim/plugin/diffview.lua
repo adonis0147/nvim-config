@@ -7,8 +7,14 @@ require('diffview').setup {
 		},
 	},
 	hooks = {
-		view_opened = function(_)
+		view_enter = function(_)
 			require('focus').focus_disable()
+		end,
+		view_leave = function(_)
+			require('focus').focus_disable()
+		end,
+		view_closed = function(_)
+			require('focus').focus_enable()
 		end
 	}
 }
