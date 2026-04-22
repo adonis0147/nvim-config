@@ -48,7 +48,7 @@ require('lualine').setup {
 	sections = {
 		lualine_x = {
 			mcphub,
-			{ 'encoding', 'fileformat', 'filetype' }
+			{ 'searchcount', 'encoding', 'fileformat', 'filetype' }
 		}
 	},
 }
